@@ -1,0 +1,13 @@
+{
+  "name": "int20h",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "clean": "rm -rf node_modules api/node_modules web/node_modules",
+    "dev": "pnpm --stream=true -r dev"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

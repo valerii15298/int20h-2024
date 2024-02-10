@@ -6,6 +6,7 @@ import * as trpcExpress from "@trpc/server/adapters/express";
 import express from "express";
 import { createContext } from "./context.js";
 import { appRouter } from "./trpc.js";
+import path from "path";
 
 async function main() {
   const port = Number(process.env.PORT);
@@ -14,6 +15,8 @@ async function main() {
   }
 
   const app = express();
+
+  app.use(express.static("public"));
 
   app.use(ClerkExpressWithAuth());
 
@@ -29,6 +32,9 @@ async function main() {
       createContext,
     })
   );
+  app.get("*", (_, res) => {
+    res.sendFile(path.resolve("public/index.html"));
+  });
   app.listen(port, () => {
     console.log("listening on port " + port.toString());
   });

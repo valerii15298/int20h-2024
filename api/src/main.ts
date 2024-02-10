@@ -1,13 +1,10 @@
 import { ClerkExpressWithAuth } from "@clerk/clerk-sdk-node";
 import * as trpcExpress from "@trpc/server/adapters/express";
 import express from "express";
-import { createContext } from "./context.js";
-import { appRouter } from "./trpc.js";
 import path from "path";
-
-import { config } from "dotenv";
-config({ path: "./.env" });
-config({ path: "../.env" });
+import { createContext } from "./context.js";
+import "./dotenv.js";
+import { appRouter } from "./trpc.js";
 
 async function main() {
   const port = Number(process.env.PORT);

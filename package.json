@@ -6,7 +6,9 @@
   "scripts": {
     "clean": "rm -rf public node_modules api/node_modules web/node_modules api/dist web/dist api/public",
     "dev": "pnpm --stream=true -r dev",
-    "ts": "pnpm --stream=true -r ts"
+    "ts": "pnpm --stream=true -r ts",
+    "db:push": "pnpm -C api exec drizzle-kit push:pg",
+    "db:studio": "pnpm -C api exec drizzle-kit studio"
   },
   "keywords": [],
   "author": "",

@@ -21,8 +21,3 @@ export const bids = pgCore.pgTable("bids", {
     .notNull()
     .references(() => lots.id),
 });
-
-export const schema = {
-  lots,
-  bids,
-};

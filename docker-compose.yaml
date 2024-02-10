@@ -1,0 +1,9 @@
+version: "3.8"
+services:
+  app:
+    build: .
+    env_file:
+      - .env
+    ports:
+      - 4001:4001
+    # command: /bin/sh -c "while sleep 1000; do :; done" # only for debugging

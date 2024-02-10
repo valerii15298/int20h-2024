@@ -34,9 +34,6 @@ importers:
       postgres:
         specifier: ^3.4.3
         version: 3.4.3
-      shared:
-        specifier: workspace:../shared
-        version: link:../shared
       typescript:
         specifier: ^5.3.3
         version: 5.3.3
@@ -56,8 +53,6 @@ importers:
       tsx:
         specifier: ^4.7.0
         version: 4.7.0
-
-  shared: {}
 
   web:
     dependencies:

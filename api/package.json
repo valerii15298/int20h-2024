@@ -21,7 +21,6 @@
     "drizzle-zod": "^0.5.1",
     "express": "^4.18.2",
     "postgres": "^3.4.3",
-    "shared": "workspace:../shared",
     "typescript": "^5.3.3",
     "ws": "^8.16.0",
     "zod": "^3.22.4"

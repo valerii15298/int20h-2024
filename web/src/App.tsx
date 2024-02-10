@@ -20,7 +20,6 @@ export function App() {
   return (
     <trpc.Provider client={trpcClient} queryClient={queryClient}>
       <QueryClientProvider client={queryClient}>
-        Deployed with github actions
         <SignedOut>
           <SignInButton />
           <p>This content is public. Only signed out users can see this.</p>

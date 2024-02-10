@@ -1,5 +1,5 @@
 FROM node:alpine
-RUN echo 1
+RUN echo 2
 RUN mkdir -p /home/node/app && chown -R node:node /home/node/app
 
 ENV PNPM_HOME="/pnpm"
@@ -8,13 +8,16 @@ RUN corepack enable
 
 USER node
 WORKDIR /home/node/app
+RUN mkdir api web
 COPY --chown=node:node pnpm-lock.yaml pnpm-workspace.yaml ./
+COPY --chown=node:node api/package.json api
+COPY --chown=node:node web/package.json web
 RUN pnpm i --frozen-lockfile
-COPY --chown=node:node . .
 
-RUN pnpm i --frozen-lockfile
+COPY --chown=node:node api api
+COPY --chown=node:node web web
+COPY .env .
 RUN pnpm -r build
 RUN mv web/dist public
 
-EXPOSE 4001
 CMD node api/dist/main.js

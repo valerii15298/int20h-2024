@@ -5,5 +5,5 @@ services:
     env_file:
       - .env
     ports:
-      - 4001:4001
+      - "${PORT}:${PORT}"
     # command: /bin/sh -c "while sleep 1000; do :; done" # only for debugging

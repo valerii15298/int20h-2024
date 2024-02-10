@@ -16,7 +16,7 @@ RUN pnpm i --frozen-lockfile
 
 COPY --chown=node:node api api
 COPY --chown=node:node web web
-COPY .env .
+COPY package.json .en[v] ./
 RUN pnpm -r build
 RUN mv web/dist public
 

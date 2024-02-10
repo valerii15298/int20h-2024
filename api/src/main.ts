@@ -6,6 +6,7 @@ import { appRouter } from "./trpc.js";
 import path from "path";
 
 import { config } from "dotenv";
+config({ path: "./.env" });
 config({ path: "../.env" });
 
 async function main() {

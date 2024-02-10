@@ -25,8 +25,7 @@ docker compose up --build
 
 ### Local development setup
 
-Install [pnpm](https://pnpm.io/installation)
-Run
+Install [pnpm](https://pnpm.io/installation) and run
 
 ```bash
 pnpm install && pnpm dev

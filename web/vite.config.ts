@@ -11,7 +11,7 @@ export default defineConfig(({ mode }) => {
       port: Number(env.VITE_PORT),
       proxy: {
         "/trpc": {
-          target: `http://localhost:${env.VITE_PORT}`,
+          target: `http://localhost:${env.VITE_API_PORT}`,
           changeOrigin: false,
         },
       },

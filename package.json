@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "clean": "rm -rf node_modules api/node_modules web/node_modules",
-    "dev": "pnpm --stream=true -r dev"
+    "dev": "pnpm --stream=true -r dev",
+    "ts": "pnpm --stream=true -r ts"
   },
   "keywords": [],
   "author": "",

@@ -2,6 +2,7 @@ import { LooseAuthProp } from "@clerk/clerk-sdk-node";
 import { initTRPC } from "@trpc/server";
 import { Context } from "./context.js";
 import { lotInsertSchema } from "./zodTypes.js";
+import { lots } from "./schema.js";
 
 declare global {
   namespace Express {
@@ -21,10 +22,9 @@ export const appRouter = t.router({
   }),
   lot: {
     list: t.procedure.query(({ ctx: { db } }) => db.query.lots.findMany()),
-    create: t.procedure.input(lotInsertSchema).mutation(({ input }) => {
-      console.log("Inserting a lot...");
-      console.log(input);
-    }),
+    create: t.procedure
+      .input(lotInsertSchema)
+      .mutation(({ input, ctx: { db } }) => db.insert(lots).values(input)),
   },
 });
 

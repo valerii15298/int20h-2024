@@ -19,6 +19,7 @@ COPY --chown=node:node web web
 COPY package.json .env ./
 RUN pnpm db:push
 RUN pnpm -r build
-RUN mv web/dist public
+RUN mv web/dist api/public
 
-CMD node api/dist/main.js
+WORKDIR /home/node/app/api
+CMD node dist/main.js

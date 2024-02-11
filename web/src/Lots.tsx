@@ -1,42 +1,45 @@
+import { useState } from "react";
+import { Lot } from "./Lot";
 import { trpc } from "./trpc";
 import { LotSchema } from "./zodTypes";
-import { CreateLot } from "./CreateLot";
 import { Button } from "./components/ui/button";
 
-export function Lot(lot: LotSchema) {
-  const utils = trpc.useUtils();
-
-  const deleteLot = trpc.lot.delete.useMutation({
-    onSuccess() {
-      utils.lot.list.invalidate();
-    },
-  });
-  return (
-    <pre>
-      {JSON.stringify(lot, null, 2)}
-      <Button
-        disabled={deleteLot.isPending}
-        onClick={() => deleteLot.mutate(lot.id)}
-        variant={"destructive"}
-      >
-        Delete
-      </Button>
-    </pre>
-  );
+function getDefaultLot(): LotSchema {
+  return {
+    name: "New lot",
+    description: "Description",
+    images: [],
+    startPrice: 1,
+    ownerId: "",
+    id: Math.random(), // for optimistic updates
+  };
 }
 
 export function Lots() {
   const lotsQuery = trpc.lot.list.useQuery();
+  const [creatingNew, setCreatingNew] = useState(false);
+  const [nextNewLot, setNextNewLot] = useState(getDefaultLot);
 
-  if (lotsQuery.isPending) return <>Pending...</>;
-  if (lotsQuery.isError) return <>{lotsQuery.error.message}</>;
   return (
     <>
-      {lotsQuery.data.map((lot) => (
-        <Lot key={lot.id} {...lot} />
-      ))}
-      <CreateLot />
-      <br />
+      {lotsQuery.isPending && <>Pending...</>}
+      {lotsQuery.isError && <>{lotsQuery.error.message}</>}
+      <main className="grid gap-2">
+        {lotsQuery.data?.map((lot) => <Lot key={lot.id} lot={lot} />)}
+      </main>
+
+      {creatingNew ? (
+        <Lot
+          key={nextNewLot.id}
+          onCreate={() => {
+            setNextNewLot(getDefaultLot);
+            setCreatingNew(false);
+          }}
+          lot={getDefaultLot()}
+        />
+      ) : (
+        <Button onClick={() => setCreatingNew(true)}>Create Lot</Button>
+      )}
     </>
   );
 }

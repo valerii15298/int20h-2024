@@ -1,5 +1,13 @@
-import { createRootRoute, Link, Outlet } from "@tanstack/react-router";
+import {
+  ClerkProvider,
+  SignedIn,
+  SignedOut,
+  SignInButton,
+  SignOutButton,
+} from "@clerk/clerk-react";
+import { createRootRoute, Outlet } from "@tanstack/react-router";
 import React, { Suspense } from "react";
+import { Button } from "../components/ui/button";
 
 const TanStackRouterDevtools =
   process.env.NODE_ENV === "production"
@@ -15,20 +23,24 @@ const TanStackRouterDevtools =
 
 export const Route = createRootRoute({
   component: () => (
-    <>
-      <div className="p-2 flex gap-2">
-        <Link to="/" className="[&.active]:font-bold">
-          Home
-        </Link>{" "}
-        <Link to="/about" className="[&.active]:font-bold">
-          About
-        </Link>
-      </div>
-      <hr />
+    <ClerkProvider publishableKey={import.meta.env.VITE_CLERK_PUBLISHABLE_KEY}>
+      <header>
+        <SignedIn>
+          <SignOutButton>
+            <Button className="ml-auto block">Sign Out</Button>
+          </SignOutButton>
+        </SignedIn>
+        <SignedOut>
+          <SignInButton>
+            <Button className="ml-auto block">Sign In</Button>
+          </SignInButton>
+        </SignedOut>
+      </header>
+
       <Outlet />
       <Suspense>
         <TanStackRouterDevtools />
       </Suspense>
-    </>
+    </ClerkProvider>
   ),
 });

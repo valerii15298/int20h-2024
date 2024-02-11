@@ -19,7 +19,9 @@ const lotOverride = {
   images: z.array(zString),
   ownerId: zString,
 } as const;
-export const lotInputSchema = createInsertSchema(lots, lotOverride);
+export const lotInputSchema = createInsertSchema(lots, lotOverride).omit({
+  id: true,
+});
 export type LotInput = z.infer<typeof lotInputSchema>;
 export const lotSchema = createSelectSchema(lots, lotOverride);
 export type LotSchema = z.infer<typeof lotSchema>;

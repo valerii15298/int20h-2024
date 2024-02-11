@@ -17,7 +17,7 @@ Update environment variables in `.env` file from those provided by _Clerk_ and _
 
 After that you have two options: either run with docker compose(the simplest one) or run locally
 
-### Run via docker-compose
+## Run via docker-compose
 
 (migrations will be applied automatically based on your .env file)
 
@@ -25,7 +25,7 @@ After that you have two options: either run with docker compose(the simplest one
 docker compose up --build
 ```
 
-### Local development setup
+## Local development setup
 
 Install [pnpm](https://pnpm.io/installation)
 

@@ -19,7 +19,7 @@ const lotOverride = {
 export const lotInputSchema = createInsertSchema(lots, lotOverride);
 export type LotInput = z.infer<typeof lotInputSchema>;
 export const lotSchema = createSelectSchema(lots, lotOverride);
-export type Lot = z.infer<typeof lotSchema>;
+export type LotSchema = z.infer<typeof lotSchema>;
 
 // BIDS
 const bidOverride = {
@@ -31,4 +31,4 @@ const bidOverride = {
 export const bidInputSchema = createInsertSchema(bids, bidOverride);
 export type BidInput = z.infer<typeof bidInputSchema>;
 export const bidSchema = createSelectSchema(bids, bidOverride);
-export type Bid = z.infer<typeof bidInputSchema>;
+export type BidSchema = z.infer<typeof bidInputSchema>;

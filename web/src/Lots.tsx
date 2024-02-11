@@ -14,6 +14,11 @@ import { Input } from "./components/ui/input";
 import { trpc } from "./trpc";
 import { lotInputSchema } from "./zodTypes";
 import { useAuth } from "@clerk/clerk-react";
+import { LotSchema } from "./zodTypes";
+
+export function Lot(lot: LotSchema) {
+  return <pre>{JSON.stringify(lot, null, 2)}</pre>;
+}
 
 export function Lots() {
   const lotsQuery = trpc.lot.list.useQuery();
@@ -22,7 +27,9 @@ export function Lots() {
   if (lotsQuery.isError) return <>{lotsQuery.error.message}</>;
   return (
     <>
-      <pre className="mb-5">{JSON.stringify(lotsQuery.data, null, 2)}</pre>
+      {lotsQuery.data.map((lot) => (
+        <Lot key={lot.id} {...lot} />
+      ))}
       <AddLot />
       <br />
     </>

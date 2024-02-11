@@ -15,9 +15,9 @@ Register at [Neon](https://neon.tech/) and create Postgres database
 
 Update environment variables in `.env` file from those provided by _Clerk_ and _Neon_ providers
 
-After that you have two option either run with docker(the simplest one) or run locally
+After that you have two options: either run with docker compose(the simplest one) or run locally
 
-### Run using docker
+### Run via docker-compose
 
 ```bash
 docker compose up --build
@@ -25,8 +25,22 @@ docker compose up --build
 
 ### Local development setup
 
-Install [pnpm](https://pnpm.io/installation) and run
+Install [pnpm](https://pnpm.io/installation)
+
+Install dependencies:
 
 ```bash
-pnpm install && pnpm dev
+pnpm install
+```
+
+Push db migrations:
+
+```bash
+pnpm db:push
+```
+
+Run the app locally:
+
+```bash
+pnpm dev
 ```

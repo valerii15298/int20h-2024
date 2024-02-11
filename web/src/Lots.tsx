@@ -30,9 +30,15 @@ export function Lots() {
       {creatingNew ? (
         <Lot
           key={nextNewLot.id}
-          onCreate={() => {
-            setNextNewLot(getDefaultLot);
-            setCreatingNew(false);
+          createNewMode={{
+            onCancel() {
+              setNextNewLot(getDefaultLot);
+              setCreatingNew(false);
+            },
+            onCreate() {
+              setNextNewLot(getDefaultLot);
+              setCreatingNew(false);
+            },
           }}
           lot={getDefaultLot()}
         />

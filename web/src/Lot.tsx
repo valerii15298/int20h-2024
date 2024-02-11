@@ -16,15 +16,18 @@ import { LotSchema, lotSchema } from "./zodTypes";
 
 export function Lot({
   lot,
-  onCreate,
+  createNewMode,
 }: {
   lot: LotSchema;
-  onCreate?: () => void;
+  createNewMode?: {
+    onCreate: () => void;
+    onCancel: () => void;
+  };
 }) {
   const createLot = trpc.lot.create.useMutation({
     onSuccess() {
       utils.lot.list.invalidate();
-      onCreate?.();
+      createNewMode?.onCreate();
     },
   });
   const updateLot = trpc.lot.update.useMutation({
@@ -39,13 +42,16 @@ export function Lot({
     },
   });
   const submitMap = {
-    Create: ({ id: _, ...lot }: LotSchema) => createLot.mutateAsync(lot), //.then(() => setMode("View")),
+    Create: ({ id: _, ...lot }: LotSchema) => {
+      createLot.mutateAsync(lot);
+      setMode("View");
+    },
     Update: (lot: LotSchema) =>
       updateLot.mutateAsync(lot).then(() => setMode("View")),
   } as const;
   type LotMode = keyof typeof submitMap | "View";
 
-  const [mode, setMode] = useState<LotMode>(onCreate ? "Create" : "View");
+  const [mode, setMode] = useState<LotMode>(createNewMode ? "Create" : "View");
   const isView = mode === "View";
   const utils = trpc.useUtils();
   const { userId } = useAuth();
@@ -58,7 +64,7 @@ export function Lot({
   const disabledFields = isView || isPending;
   return (
     <Form {...form}>
-      {onCreate && "Create Lot"}
+      {createNewMode && "Create Lot"}
       <form
         className="flex gap-2"
         onSubmit={!isView ? form.handleSubmit(submitMap[mode]) : undefined}
@@ -130,7 +136,12 @@ export function Lot({
             <Button disabled={!userId} type="submit">
               {mode}
             </Button>
-            <Button type="button" onClick={() => setMode("View")}>
+            <Button
+              type="button"
+              onClick={() =>
+                createNewMode ? createNewMode.onCancel() : setMode("View")
+              }
+            >
               Cancel
             </Button>
           </>

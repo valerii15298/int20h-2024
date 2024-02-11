@@ -11,7 +11,7 @@ export function LotImages({ images }: { images: string[] }) {
     return null;
   }
   return (
-    <Carousel className="w-full max-w-xs">
+    <Carousel>
       <CarouselContent>
         {images.map((src, idx) => (
           <CarouselItem key={idx}>

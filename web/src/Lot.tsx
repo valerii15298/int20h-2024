@@ -2,18 +2,27 @@ import { useAuth } from "@clerk/clerk-react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Fragment, useState } from "react";
 import { useForm } from "react-hook-form";
+import { LotImages } from "./LotImages";
 import { Button } from "./components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "./components/ui/card";
 import {
   Form,
   FormControl,
   FormField,
   FormItem,
+  FormLabel,
   FormMessage,
 } from "./components/ui/form";
 import { Input } from "./components/ui/input";
 import { trpc } from "./trpc";
 import { LotSchema, lotSchema } from "./zodTypes";
-import { LotImages } from "./LotImages";
 
 const toBase64 = (file: File) =>
   new Promise<string>((resolve, reject) => {
@@ -90,118 +99,138 @@ export function Lot({
   return (
     <Form {...form}>
       {createNewMode && "Create Lot"}
-      <form
-        className="flex gap-2"
-        onSubmit={!isView ? form.handleSubmit(submitMap[mode]) : undefined}
-      >
-        <FormField
-          disabled={disabledFields}
-          control={form.control}
-          name="images"
-          render={({ field: { value, ...field } }) => (
-            <FormItem>
-              <LotImages images={value} />
-              {!isView && (
-                <FormControl>
-                  <Input
-                    type="file"
-                    multiple
-                    accept="image/*"
-                    placeholder="images"
-                    {...field}
-                    onChange={async (e) => {
-                      const files = e.target.files;
-                      if (!files) return;
-                      const images: string[] = [];
-                      for (let i = 0; i < files.length; i++) {
-                        images.push(await toBase64(files[i]!));
-                      }
-                      field.onChange(images);
-                    }}
-                  />
-                </FormControl>
+      <form onSubmit={!isView ? form.handleSubmit(submitMap[mode]) : undefined}>
+        <Card className="flex">
+          <FormField
+            disabled={disabledFields}
+            control={form.control}
+            name="images"
+            render={({ field: { value, ...field } }) => (
+              <FormItem>
+                <LotImages images={value} />
+                {!isView && (
+                  <FormControl>
+                    <Input
+                      type="file"
+                      multiple
+                      accept="image/*"
+                      placeholder="images"
+                      {...field}
+                      onChange={async (e) => {
+                        const files = e.target.files;
+                        if (!files) return;
+                        const images: string[] = [];
+                        for (let i = 0; i < files.length; i++) {
+                          images.push(await toBase64(files[i]!));
+                        }
+                        field.onChange(images);
+                      }}
+                    />
+                  </FormControl>
+                )}
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <div>
+            <CardHeader>
+              <FormField
+                disabled={disabledFields}
+                control={form.control}
+                name="name"
+                render={({ field }) =>
+                  isView ? (
+                    <CardTitle>{field.value}</CardTitle>
+                  ) : (
+                    <FormItem>
+                      <FormControl>
+                        <Input placeholder="name" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )
+                }
+              />
+
+              <FormField
+                disabled={disabledFields}
+                control={form.control}
+                name="description"
+                render={({ field }) =>
+                  isView ? (
+                    <CardDescription>{field.value}</CardDescription>
+                  ) : (
+                    <FormItem>
+                      <FormControl>
+                        <Input placeholder="description" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )
+                }
+              />
+            </CardHeader>
+            <CardContent>
+              <FormField
+                disabled={disabledFields}
+                control={form.control}
+                name="startPrice"
+                render={({ field }) =>
+                  isView ? (
+                    <FormLabel>Price: ${field.value}</FormLabel>
+                  ) : (
+                    <FormItem>
+                      <FormControl>
+                        <Input
+                          placeholder="Start Price"
+                          onWheel={(e) => (e.target as HTMLInputElement).blur()}
+                          type="number"
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )
+                }
+              />
+            </CardContent>
+            <CardFooter className="flex gap-2">
+              {isView ? (
+                <Fragment key={"View"}>
+                  <Button
+                    type="button"
+                    onClick={() => setMode("Update")}
+                    variant={"secondary"}
+                  >
+                    Edit
+                  </Button>
+                  <Button
+                    type="button"
+                    disabled={deleteLot.isPending}
+                    onClick={() => deleteLot.mutate(lot.id)}
+                    variant={"destructive"}
+                  >
+                    Delete
+                  </Button>
+                </Fragment>
+              ) : (
+                <>
+                  <Button disabled={!userId} type="submit">
+                    {mode}
+                  </Button>
+                  <Button
+                    type="button"
+                    onClick={() =>
+                      createNewMode ? createNewMode.onCancel() : setMode("View")
+                    }
+                  >
+                    Cancel
+                  </Button>
+                </>
               )}
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          disabled={disabledFields}
-          control={form.control}
-          name="name"
-          render={({ field }) => (
-            <FormItem>
-              <FormControl>
-                <Input placeholder="name" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          disabled={disabledFields}
-          control={form.control}
-          name="description"
-          render={({ field }) => (
-            <FormItem>
-              <FormControl>
-                <Input placeholder="description" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          disabled={disabledFields}
-          control={form.control}
-          name="startPrice"
-          render={({ field }) => (
-            <FormItem>
-              <FormControl>
-                <Input
-                  placeholder="Start Price"
-                  onWheel={(e) => (e.target as HTMLInputElement).blur()}
-                  type="number"
-                  {...field}
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        {isView ? (
-          <Fragment key={"View"}>
-            <Button
-              type="button"
-              onClick={() => setMode("Update")}
-              variant={"secondary"}
-            >
-              Edit
-            </Button>
-            <Button
-              type="button"
-              disabled={deleteLot.isPending}
-              onClick={() => deleteLot.mutate(lot.id)}
-              variant={"destructive"}
-            >
-              Delete
-            </Button>
-          </Fragment>
-        ) : (
-          <>
-            <Button disabled={!userId} type="submit">
-              {mode}
-            </Button>
-            <Button
-              type="button"
-              onClick={() =>
-                createNewMode ? createNewMode.onCancel() : setMode("View")
-              }
-            >
-              Cancel
-            </Button>
-          </>
-        )}
+            </CardFooter>
+          </div>
+        </Card>
       </form>
     </Form>
   );

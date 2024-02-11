@@ -1,8 +1,9 @@
 import { LooseAuthProp } from "@clerk/clerk-sdk-node";
 import { initTRPC } from "@trpc/server";
 import { Context } from "./context.js";
-import { lotInsertSchema } from "./zodTypes.js";
+import { lotInputSchema, lotSchema, zInt } from "./zodTypes.js";
 import { lots } from "./schema.js";
+import { eq } from "drizzle-orm";
 
 declare global {
   namespace Express {
@@ -17,14 +18,23 @@ declare global {
 const t = initTRPC.context<Context>().create();
 
 export const appRouter = t.router({
-  hello: t.procedure.query(() => {
-    return `hello world`;
-  }),
   lot: {
     list: t.procedure.query(({ ctx: { db } }) => db.query.lots.findMany()),
+
+    // CRUD
     create: t.procedure
-      .input(lotInsertSchema)
+      .input(lotInputSchema)
       .mutation(({ input, ctx: { db } }) => db.insert(lots).values(input)),
+    update: t.procedure
+      .input(lotSchema)
+      .mutation(({ input, ctx: { db } }) =>
+        db.update(lots).set(input).where(eq(lots.id, input.id))
+      ),
+    delete: t.procedure
+      .input(zInt)
+      .mutation(({ input, ctx: { db } }) =>
+        db.delete(lots).where(eq(lots.id, input))
+      ),
   },
 });
 

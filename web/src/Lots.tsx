@@ -12,7 +12,7 @@ import {
 } from "./components/ui/form";
 import { Input } from "./components/ui/input";
 import { trpc } from "./trpc";
-import { lotInsertSchema } from "./zodTypes";
+import { lotInputSchema } from "./zodTypes";
 import { useAuth } from "@clerk/clerk-react";
 
 export function Lots() {
@@ -29,7 +29,7 @@ export function Lots() {
   );
 }
 
-function getDefaultLot(): z.infer<typeof lotInsertSchema> {
+function getDefaultLot(): z.infer<typeof lotInputSchema> {
   return {
     name: "",
     description: "",
@@ -43,13 +43,13 @@ export function AddLot() {
   const utils = trpc.useUtils();
   const { userId } = useAuth();
   const [adding, setAdding] = useState(false);
-  const form = useForm<z.infer<typeof lotInsertSchema>>({
+  const form = useForm<z.infer<typeof lotInputSchema>>({
     defaultValues: getDefaultLot(),
     values: {
       ...getDefaultLot(),
       ownerId: userId!,
     },
-    resolver: zodResolver(lotInsertSchema),
+    resolver: zodResolver(lotInputSchema),
   });
   const createLot = trpc.lot.create.useMutation({
     onSuccess() {

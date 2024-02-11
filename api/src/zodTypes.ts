@@ -8,6 +8,7 @@ export const zInt = z.preprocess(
   z.number().int().min(1).max(Number.MAX_SAFE_INTEGER)
 );
 
+// LOTS
 const lotOverride = {
   name: zString,
   description: zString,
@@ -15,13 +16,19 @@ const lotOverride = {
   images: z.array(zString),
   ownerId: zString,
 } as const;
-
 export const lotInputSchema = createInsertSchema(lots, lotOverride);
+export type LotInput = z.infer<typeof lotInputSchema>;
 export const lotSchema = createSelectSchema(lots, lotOverride);
+export type Lot = z.infer<typeof lotSchema>;
 
-export const bidInsertSchema = createInsertSchema(bids, {
+// BIDS
+const bidOverride = {
   createdAt: zInt,
   lotId: zInt,
   price: zInt,
   ownerId: zString,
-});
+} as const;
+export const bidInputSchema = createInsertSchema(bids, bidOverride);
+export type BidInput = z.infer<typeof bidInputSchema>;
+export const bidSchema = createSelectSchema(bids, bidOverride);
+export type Bid = z.infer<typeof bidInputSchema>;

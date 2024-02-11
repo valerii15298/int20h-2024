@@ -1,5 +1,4 @@
 FROM node:alpine
-RUN echo 2
 RUN mkdir -p /home/node/app && chown -R node:node /home/node/app
 
 ENV PNPM_HOME="/pnpm"
@@ -17,6 +16,7 @@ RUN pnpm i --frozen-lockfile
 COPY --chown=node:node api api
 COPY --chown=node:node web web
 COPY package.json .env ./
+ENV NODE_ENV=production
 RUN pnpm db:push
 RUN pnpm -r build
 RUN mv web/dist api/public

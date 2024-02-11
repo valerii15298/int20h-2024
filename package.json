@@ -9,7 +9,8 @@
     "ts": "pnpm --stream=true -r ts",
     "ts:check": "pnpm --stream=true -r ts:check",
     "db:push": "pnpm -C api exec drizzle-kit push:pg",
-    "db:studio": "pnpm -C api exec drizzle-kit studio"
+    "db:studio": "pnpm -C api exec drizzle-kit studio",
+    "compose": "BUILDKIT_PROGRESS=plain docker compose up --build"
   },
   "keywords": [],
   "author": "",

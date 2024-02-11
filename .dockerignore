@@ -7,3 +7,6 @@ Dockerfile
 docker-compose.*
 .dockerignore
 public
+
+api/public
+web/src/routeTree.gen.ts

@@ -1,6 +1,6 @@
 api/public
+web/src/routeTree.gen.ts
 
-# Logs
 logs
 *.log
 npm-debug.log*

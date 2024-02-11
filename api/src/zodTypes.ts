@@ -3,7 +3,10 @@ import { bids, lots } from "./schema.js";
 import { z } from "zod";
 
 const zString = z.string().min(1);
-const zInt = z.preprocess((v) => Number(v), z.number().int().min(1));
+const zInt = z.preprocess(
+  (v) => Number(v),
+  z.number().int().min(1).max(Number.MAX_SAFE_INTEGER)
+);
 
 export const lotInsertSchema = createInsertSchema(lots, {
   name: zString,
@@ -14,7 +17,8 @@ export const lotInsertSchema = createInsertSchema(lots, {
 });
 
 export const bidInsertSchema = createInsertSchema(bids, {
-  name: zString,
-  description: zString,
+  createdAt: zInt,
+  lotId: zInt,
+  price: zInt,
   ownerId: zString,
 });

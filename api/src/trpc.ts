@@ -20,6 +20,7 @@ export const appRouter = t.router({
     return `hello world`;
   }),
   lot: {
+    list: t.procedure.query(({ ctx: { db } }) => db.query.lots.findMany()),
     create: t.procedure.input(lotInsertSchema).mutation(({ input }) => {
       console.log("Inserting a lot...");
       console.log(input);

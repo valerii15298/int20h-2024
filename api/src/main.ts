@@ -1,9 +1,10 @@
+import "./dotenv.js";
+
 import { ClerkExpressWithAuth } from "@clerk/clerk-sdk-node";
 import * as trpcExpress from "@trpc/server/adapters/express";
 import express from "express";
 import path from "path";
 import { createContext } from "./context.js";
-import "./dotenv.js";
 import { appRouter } from "./trpc.js";
 
 async function main() {

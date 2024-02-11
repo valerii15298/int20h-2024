@@ -19,6 +19,8 @@ After that you have two options: either run with docker compose(the simplest one
 
 ### Run via docker-compose
 
+(migrations will be applied automatically based on your .env file)
+
 ```bash
 docker compose up --build
 ```

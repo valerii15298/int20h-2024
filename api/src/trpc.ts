@@ -21,7 +21,6 @@ export const appRouter = t.router({
     list: t.procedure.query(async ({ ctx: { db } }) => {
       const lots = await db.query.lots.findMany();
       const allUsers = await clerk.users.getUserList();
-      console.log(allUsers);
       return Promise.all(
         lots.map(({ ownerId, ...l }) => {
           const { firstName, lastName } = allUsers.find(

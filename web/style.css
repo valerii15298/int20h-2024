@@ -1,0 +1,217 @@
+
+
+.mainbutton {
+  background: black;
+  color: white;
+  border-radius: 0;
+  border: 3px solid white;
+  transition: 0.5s;
+  width: 100%;
+  max-width: 200px;
+  text-decoration: none !important;
+}
+
+.mainbutton.active {
+  background: white;
+  color: black;
+  border-radius: 0;
+  border: 3px solid white;
+  transition: 0.5s;
+  width: 100%;
+  max-width: 200px;
+  text-decoration: none !important;
+}
+
+.lots-container-filter{
+  background-color: black;
+  padding: 10px;
+}
+
+.mainbutton:hover {
+  background: white;
+  color: black;
+  border-radius: 0;
+  text-decoration: none !important;
+}
+
+.lots-container-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px;
+  background-color: black;
+}
+
+.lots-container-list-items {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.lots-controll-buttons{
+  display: flex;
+}
+.lots-container{
+  padding: 10px;
+  display: grid;
+  gap: 10px;
+  grid-template-columns: 1fr auto;
+}
+.item-lot-carusel-controller{
+  max-width: 100%;
+  padding: 0 50px;
+}
+.item-lot-main-data-title {
+  font-size: 42px;
+  font-weight: bold;
+}
+.item-lot {
+  background-color: white;
+  padding: 10px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 10px;
+  color: black;
+}
+.item-lot svg{
+  color: black;
+}
+
+.item-lot-carusel-controller-image{
+  width:100%;
+  max-width: 300px;
+  height:200px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; 
+  position: relative;
+
+}
+
+.item-lot-carusel-controller-image img{
+  max-height: 100%;
+  max-width: 300%;
+  height: 100%;
+  position: absolute;
+  overflow: hidden;
+
+  cursor: pointer;
+  background-color: black;
+}
+.item-lot-carusel-controller-image:hover img{
+  opacity: 0.8;
+}
+.item-lot-secondary-data{
+  padding: 10px 20px;
+  background-color: black;
+  color: white;
+  display: grid;
+  max-width: 250px;
+  grid-template-rows: auto auto auto 1fr auto;
+
+}
+.item-lot-secondary-data-cost{
+  font-weight: bold;
+  font-size: 30px;
+}
+.item-lot-secondary-data-types{
+  display: flex;
+  flex-direction: column;
+}
+.item-lot-secondary-data-types-items{
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  max-width: 100%;
+  flex-wrap: wrap;
+  
+}
+.item-lot-secondary-data-types-item{
+  background-color: black;
+  color: white;
+  border: 3px solid white;
+  padding: 2px 7px;
+  cursor: pointer;
+  transition: 0.5s;
+}
+.item-lot-secondary-data-types-item:hover{
+  background-color: white;
+  color: black;
+  border: 3px solid white;
+  padding: 2px 7px;
+}
+.item-lot-secondary-data-creator{
+  display: grid;
+  width: 100%;
+  justify-content: end;
+}
+.image-absolute-show{
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top:0;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+  background-color: rgba(0, 0, 0, 0.658);
+}
+.image-absolute-show img{
+  max-height: 90%;
+  max-width: 90%;
+  height: 50%;
+}
+.main-container .dropzone {
+  background-color: black;
+  border: 5px dashed white;
+  color: white;
+  font-weight: bold;
+  width: 100%;
+  height: 200px;
+  display: flex;
+  justify-content: center;
+
+  align-items: center;
+}
+
+.uploaded-images {
+  padding: 10px 0;
+}
+.image-container{
+  display: flex;
+  justify-items: start;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.lots-container form{
+  color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+}
+.lots-container form input{
+  background-color: black;
+  border-radius: 0;
+  border: 3px solid white;
+  color: white;
+  font-weight: bold;
+}
+.lots-container-filter-activity{
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 10px;
+}
+.filter-input{
+  display: grid;
+  color: white;
+}
+.filter-input input{
+  background-color: black;
+  border: 3px solid white;
+  border-radius: 0;
+  outline: none;
+  padding: 2px 5px;
+}

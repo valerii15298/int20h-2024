@@ -40,6 +40,7 @@ function getDefaultLot(): z.infer<typeof lotInsertSchema> {
 }
 
 export function AddLot() {
+  const utils = trpc.useUtils();
   const { userId } = useAuth();
   const [adding, setAdding] = useState(false);
   const form = useForm<z.infer<typeof lotInsertSchema>>({
@@ -50,7 +51,11 @@ export function AddLot() {
     },
     resolver: zodResolver(lotInsertSchema),
   });
-  const createLot = trpc.lot.create.useMutation();
+  const createLot = trpc.lot.create.useMutation({
+    onSuccess() {
+      utils.lot.list.invalidate();
+    },
+  });
 
   return !adding ? (
     <Button onClick={() => setAdding(true)}>Create Lot</Button>

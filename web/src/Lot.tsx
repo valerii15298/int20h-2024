@@ -14,6 +14,30 @@ import { Input } from "./components/ui/input";
 import { trpc } from "./trpc";
 import { LotSchema, lotSchema } from "./zodTypes";
 
+const toBase64 = (file: File) =>
+  new Promise<string>((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      const result = reader.result;
+      if (result instanceof ArrayBuffer) {
+        return resolve(arrayBufferToBase64(result));
+      }
+      resolve(result!);
+    };
+    reader.onerror = reject;
+  });
+
+function arrayBufferToBase64(buffer: ArrayBuffer) {
+  let binary = "";
+  const bytes = new Uint8Array(buffer);
+  const len = bytes.byteLength;
+  for (let i = 0; i < len; i++) {
+    binary += String.fromCharCode(bytes[i]!);
+  }
+  return window.btoa(binary);
+}
+
 export function Lot({
   lot,
   createNewMode,
@@ -69,6 +93,35 @@ export function Lot({
         className="flex gap-2"
         onSubmit={!isView ? form.handleSubmit(submitMap[mode]) : undefined}
       >
+        <FormField
+          disabled={disabledFields}
+          control={form.control}
+          name="images"
+          render={({ field: { value, ...field } }) => (
+            <FormItem>
+              {value.length}
+              <FormControl>
+                <Input
+                  type="file"
+                  multiple
+                  accept="image/*"
+                  placeholder="images"
+                  {...field}
+                  onChange={async (e) => {
+                    const files = e.target.files;
+                    if (!files) return;
+                    const images: string[] = [];
+                    for (let i = 0; i < files.length; i++) {
+                      images.push(await toBase64(files[i]!));
+                    }
+                    field.onChange(images);
+                  }}
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
         <FormField
           disabled={disabledFields}
           control={form.control}

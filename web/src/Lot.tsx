@@ -1,6 +1,6 @@
 import { useAuth } from "@clerk/clerk-react";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useState } from "react";
+import { Fragment, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Button } from "./components/ui/button";
 import {
@@ -114,7 +114,7 @@ export function Lot({
           )}
         />
         {isView ? (
-          <>
+          <Fragment key={"View"}>
             <Button
               type="button"
               onClick={() => setMode("Update")}
@@ -130,7 +130,7 @@ export function Lot({
             >
               Delete
             </Button>
-          </>
+          </Fragment>
         ) : (
           <>
             <Button disabled={!userId} type="submit">

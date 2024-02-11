@@ -16,7 +16,8 @@ RUN pnpm i --frozen-lockfile
 
 COPY --chown=node:node api api
 COPY --chown=node:node web web
-COPY package.json .en[v] ./
+COPY package.json .env ./
+RUN pnpm db:push
 RUN pnpm -r build
 RUN mv web/dist public
 

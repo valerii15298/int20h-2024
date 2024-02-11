@@ -13,6 +13,7 @@ import {
 import { Input } from "./components/ui/input";
 import { trpc } from "./trpc";
 import { LotSchema, lotSchema } from "./zodTypes";
+import { LotImages } from "./LotImages";
 
 const toBase64 = (file: File) =>
   new Promise<string>((resolve, reject) => {
@@ -99,25 +100,27 @@ export function Lot({
           name="images"
           render={({ field: { value, ...field } }) => (
             <FormItem>
-              {value.length}
-              <FormControl>
-                <Input
-                  type="file"
-                  multiple
-                  accept="image/*"
-                  placeholder="images"
-                  {...field}
-                  onChange={async (e) => {
-                    const files = e.target.files;
-                    if (!files) return;
-                    const images: string[] = [];
-                    for (let i = 0; i < files.length; i++) {
-                      images.push(await toBase64(files[i]!));
-                    }
-                    field.onChange(images);
-                  }}
-                />
-              </FormControl>
+              <LotImages images={value} />
+              {!isView && (
+                <FormControl>
+                  <Input
+                    type="file"
+                    multiple
+                    accept="image/*"
+                    placeholder="images"
+                    {...field}
+                    onChange={async (e) => {
+                      const files = e.target.files;
+                      if (!files) return;
+                      const images: string[] = [];
+                      for (let i = 0; i < files.length; i++) {
+                        images.push(await toBase64(files[i]!));
+                      }
+                      field.onChange(images);
+                    }}
+                  />
+                </FormControl>
+              )}
               <FormMessage />
             </FormItem>
           )}

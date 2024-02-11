@@ -23,9 +23,9 @@ export function Lots() {
     <>
       {lotsQuery.isPending && <>Pending...</>}
       {lotsQuery.isError && <>{lotsQuery.error.message}</>}
-      <main className="grid gap-2">
+      <div className="grid gap-2">
         {lotsQuery.data?.map((lot) => <Lot key={lot.id} lot={lot} />)}
-      </main>
+      </div>
 
       {creatingNew ? (
         <Lot

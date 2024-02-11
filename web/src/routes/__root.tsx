@@ -36,8 +36,9 @@ export const Route = createRootRoute({
           </SignInButton>
         </SignedOut>
       </header>
-
-      <Outlet />
+      <main className="m-2">
+        <Outlet />
+      </main>
       <Suspense>
         <TanStackRouterDevtools />
       </Suspense>

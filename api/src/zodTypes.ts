@@ -21,9 +21,12 @@ const lotOverride = {
 } as const;
 export const lotInputSchema = createInsertSchema(lots, lotOverride).omit({
   id: true,
+  ownerId: true,
 });
 export type LotInput = z.infer<typeof lotInputSchema>;
-export const lotSchema = createSelectSchema(lots, lotOverride);
+export const lotSchema = createSelectSchema(lots, lotOverride).omit({
+  ownerId: true,
+});
 export type LotSchema = z.infer<typeof lotSchema>;
 
 // BIDS

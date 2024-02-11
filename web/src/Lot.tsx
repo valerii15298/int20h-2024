@@ -50,7 +50,7 @@ export function Lot({
   const utils = trpc.useUtils();
   const { userId } = useAuth();
   const form = useForm<LotSchema>({
-    values: { ...lot, ownerId: userId ?? "" },
+    values: lot,
     resolver: zodResolver(lotSchema),
   });
 

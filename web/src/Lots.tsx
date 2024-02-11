@@ -10,7 +10,6 @@ function getDefaultLot(): LotSchema {
     description: "Description",
     images: [],
     startPrice: 1,
-    ownerId: "",
     id: Math.random(), // for optimistic updates
   };
 }

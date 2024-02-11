@@ -4,10 +4,23 @@ import { CreateLot } from "./CreateLot";
 import { Button } from "./components/ui/button";
 
 export function Lot(lot: LotSchema) {
+  const utils = trpc.useUtils();
+
+  const deleteLot = trpc.lot.delete.useMutation({
+    onSuccess() {
+      utils.lot.list.invalidate();
+    },
+  });
   return (
     <pre>
       {JSON.stringify(lot, null, 2)}
-      <Button variant={"destructive"}>Delete</Button>
+      <Button
+        disabled={deleteLot.isPending}
+        onClick={() => deleteLot.mutate(lot.id)}
+        variant={"destructive"}
+      >
+        Delete
+      </Button>
     </pre>
   );
 }

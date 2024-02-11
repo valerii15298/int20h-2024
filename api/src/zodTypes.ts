@@ -3,10 +3,13 @@ import { bids, lots } from "./schema.js";
 import { z } from "zod";
 
 export const zString = z.string().min(1);
+
+// Workaround for ug in trpc(cannot properly infer z.preprocess)
+const rawInt = z.number().int();
 export const zInt = z.preprocess(
   (v) => Number(v),
   z.number().int().min(1).max(Number.MAX_SAFE_INTEGER)
-);
+) as unknown as typeof rawInt;
 
 // LOTS
 const lotOverride = {

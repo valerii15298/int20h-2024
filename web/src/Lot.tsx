@@ -1,9 +1,8 @@
 import { useAuth } from "@clerk/clerk-react";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Fragment, useState } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { LotImages } from "./LotImages";
-import { Button } from "./components/ui/button";
+import { Button, buttonVariants } from "./components/ui/button";
 import {
   Card,
   CardContent,
@@ -23,6 +22,8 @@ import {
 import { Input } from "./components/ui/input";
 import { trpc } from "./trpc";
 import { LotSchema, lotSchema } from "./zodTypes";
+import { cn } from "@/lib/utils";
+import { LotImages } from "@/LotImages";
 
 const toBase64 = (file: File) =>
   new Promise<string>((resolve, reject) => {
@@ -100,38 +101,7 @@ export function Lot({
     <Form {...form}>
       {createNewMode && "Create Lot"}
       <form onSubmit={!isView ? form.handleSubmit(submitMap[mode]) : undefined}>
-        <Card className="flex">
-          <FormField
-            disabled={disabledFields}
-            control={form.control}
-            name="images"
-            render={({ field: { value, ...field } }) => (
-              <FormItem>
-                <LotImages images={value} />
-                {!isView && (
-                  <FormControl>
-                    <Input
-                      type="file"
-                      multiple
-                      accept="image/*"
-                      placeholder="images"
-                      {...field}
-                      onChange={async (e) => {
-                        const files = e.target.files;
-                        if (!files) return;
-                        const images: string[] = [];
-                        for (let i = 0; i < files.length; i++) {
-                          images.push(await toBase64(files[i]!));
-                        }
-                        field.onChange(images);
-                      }}
-                    />
-                  </FormControl>
-                )}
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+        <Card className="flex items-stretch h-[400px] w-fit">
           <div>
             <CardHeader>
               <FormField
@@ -151,7 +121,6 @@ export function Lot({
                   )
                 }
               />
-
               <FormField
                 disabled={disabledFields}
                 control={form.control}
@@ -170,7 +139,7 @@ export function Lot({
                 }
               />
             </CardHeader>
-            <CardContent>
+            <CardContent className="grid gap-2">
               <FormField
                 disabled={disabledFields}
                 control={form.control}
@@ -193,10 +162,43 @@ export function Lot({
                   )
                 }
               />
+              <FormField
+                disabled={disabledFields}
+                control={form.control}
+                name="images"
+                render={({ field: { value, ...field } }) => (
+                  <FormItem className="text-center">
+                    <FormLabel className={cn(buttonVariants())}>
+                      Choose Images
+                    </FormLabel>
+                    <FormControl>
+                      <Input
+                        type="file"
+                        multiple
+                        accept="image/*"
+                        placeholder="images"
+                        className="hidden"
+                        {...field}
+                        onChange={async (e) => {
+                          const files = e.target.files;
+                          if (!files) return;
+                          const images: string[] = [];
+                          for (let i = 0; i < files.length; i++) {
+                            images.push(await toBase64(files[i]!));
+                          }
+                          field.onChange(images);
+                        }}
+                      />
+                    </FormControl>
+
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
             </CardContent>
             <CardFooter className="flex gap-2">
               {isView ? (
-                <Fragment key={"View"}>
+                <div className="flex w-full justify-evenly" key={"View"}>
                   <Button
                     type="button"
                     onClick={() => setMode("Update")}
@@ -212,9 +214,9 @@ export function Lot({
                   >
                     Delete
                   </Button>
-                </Fragment>
+                </div>
               ) : (
-                <>
+                <div className="flex w-full justify-evenly">
                   <Button disabled={!userId} type="submit">
                     {mode}
                   </Button>
@@ -226,10 +228,11 @@ export function Lot({
                   >
                     Cancel
                   </Button>
-                </>
+                </div>
               )}
             </CardFooter>
           </div>
+          <LotImages control={form.control} />
         </Card>
       </form>
     </Form>

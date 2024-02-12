@@ -101,8 +101,8 @@ export function Lot({
     <Form {...form}>
       {createNewMode && "Create Lot"}
       <form onSubmit={!isView ? form.handleSubmit(submitMap[mode]) : undefined}>
-        <Card className="flex items-stretch h-[400px] w-fit">
-          <div>
+        <Card className="flex items-stretch h-[300px] w-fit">
+          <div className="min-w-80 max-w-96 flex flex-col justify-between">
             <CardHeader>
               <FormField
                 disabled={disabledFields}
@@ -146,7 +146,9 @@ export function Lot({
                 name="startPrice"
                 render={({ field }) =>
                   isView ? (
-                    <FormLabel>Price: ${field.value}</FormLabel>
+                    <FormLabel className="font-bold text-lg">
+                      Price: ${field.value}
+                    </FormLabel>
                   ) : (
                     <FormItem>
                       <FormControl>
@@ -162,44 +164,50 @@ export function Lot({
                   )
                 }
               />
-              <FormField
-                disabled={disabledFields}
-                control={form.control}
-                name="images"
-                render={({ field: { value, ...field } }) => (
-                  <FormItem className="text-center">
-                    <FormLabel className={cn(buttonVariants())}>
-                      Choose Images
-                    </FormLabel>
-                    <FormControl>
-                      <Input
-                        type="file"
-                        multiple
-                        accept="image/*"
-                        placeholder="images"
-                        className="hidden"
-                        {...field}
-                        onChange={async (e) => {
-                          const files = e.target.files;
-                          if (!files) return;
-                          const images: string[] = [];
-                          for (let i = 0; i < files.length; i++) {
-                            images.push(await toBase64(files[i]!));
-                          }
-                          field.onChange(images);
-                        }}
-                      />
-                    </FormControl>
+              {!isView && (
+                <FormField
+                  disabled={disabledFields}
+                  control={form.control}
+                  name="images"
+                  render={({ field: { value, ...field } }) => (
+                    <FormItem>
+                      <FormLabel
+                        className={cn(buttonVariants({ className: "w-full" }))}
+                      >
+                        Choose Images
+                      </FormLabel>
+                      <FormControl>
+                        <Input
+                          type="file"
+                          multiple
+                          accept="image/*"
+                          placeholder="images"
+                          className="hidden"
+                          {...field}
+                          onChange={async (e) => {
+                            const files = e.target.files;
+                            if (!files) return;
+                            const images: string[] = [];
+                            for (let i = 0; i < files.length; i++) {
+                              images.push(await toBase64(files[i]!));
+                            }
+                            field.onChange(images);
+                          }}
+                        />
+                      </FormControl>
 
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              )}
             </CardContent>
-            <CardFooter className="flex gap-2">
+            <CardFooter className="flex justify-evenly gap-2">
               {isView ? (
-                <div className="flex w-full justify-evenly" key={"View"}>
+                <>
                   <Button
+                    className="w-full"
+                    key="edit"
                     type="button"
                     onClick={() => setMode("Update")}
                     variant={"secondary"}
@@ -207,6 +215,8 @@ export function Lot({
                     Edit
                   </Button>
                   <Button
+                    className="w-full"
+                    key="delete"
                     type="button"
                     disabled={deleteLot.isPending}
                     onClick={() => deleteLot.mutate(lot.id)}
@@ -214,13 +224,20 @@ export function Lot({
                   >
                     Delete
                   </Button>
-                </div>
+                </>
               ) : (
-                <div className="flex w-full justify-evenly">
-                  <Button disabled={!userId} type="submit">
+                <>
+                  <Button
+                    className="w-full"
+                    key={mode}
+                    disabled={!userId}
+                    type="submit"
+                  >
                     {mode}
                   </Button>
                   <Button
+                    className="w-full"
+                    key={"cancel"}
                     type="button"
                     onClick={() =>
                       createNewMode ? createNewMode.onCancel() : setMode("View")
@@ -228,7 +245,7 @@ export function Lot({
                   >
                     Cancel
                   </Button>
-                </div>
+                </>
               )}
             </CardFooter>
           </div>

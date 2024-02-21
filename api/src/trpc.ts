@@ -2,7 +2,7 @@ import { initTRPC } from "@trpc/server";
 import { Context } from "./context.js";
 import { lotInputSchema, lotSchema, zInt } from "./zodTypes.js";
 import { lots } from "./schema.js";
-import { eq } from "drizzle-orm";
+import * as d from "drizzle-orm";
 import * as clerk from "@clerk/clerk-sdk-node";
 declare global {
   namespace Express {
@@ -49,12 +49,12 @@ export const appRouter = t.router({
     update: t.procedure
       .input(lotSchema)
       .mutation(({ input, ctx: { db } }) =>
-        db.update(lots).set(input).where(eq(lots.id, input.id))
+        db.update(lots).set(input).where(d.eq(lots.id, input.id))
       ),
     delete: t.procedure
       .input(zInt)
       .mutation(({ input, ctx: { db } }) =>
-        db.delete(lots).where(eq(lots.id, input))
+        db.delete(lots).where(d.eq(lots.id, input))
       ),
   },
 });

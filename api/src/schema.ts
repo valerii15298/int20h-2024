@@ -7,7 +7,6 @@ export const lots = pgCore.pgTable("lots", {
   startPrice: pgCore.integer("startPrice").notNull(),
   images: pgCore.varchar("images").notNull().array().notNull(), // for simplicity store images in database as base64 encoded strings
   ownerId: pgCore.varchar("ownerId").notNull(),
-  // TODO: expire time and closing lot after that time, columns to add: open(boolean), expiresAt
 });
 
 export const bids = pgCore.pgTable("bids", {

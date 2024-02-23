@@ -22,7 +22,6 @@ export const appRouter = t.router({
           const { firstName, lastName } = allUsers.find(
             (u) => u.id === ownerId
           )!;
-
           const fullName = `${firstName} ${lastName}`;
           const owner = {
             fullName,

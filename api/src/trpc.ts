@@ -3,12 +3,7 @@ import { Context } from "./context.js";
 import { lotInputSchema, lotSchema, zInt } from "./zodTypes.js";
 import { lots } from "./schema.js";
 import * as d from "drizzle-orm";
-import * as clerk from "@clerk/clerk-sdk-node";
-declare global {
-  namespace Express {
-    interface Request extends clerk.LooseAuthProp {}
-  }
-}
+import { clerk } from "./clerk.js";
 
 const t = initTRPC.context<Context>().create();
 

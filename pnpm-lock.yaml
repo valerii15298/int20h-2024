@@ -50,6 +50,9 @@ importers:
         specifier: ^3.22.4
         version: 3.22.4
     devDependencies:
+      '@tsconfig/strictest':
+        specifier: ^2.0.3
+        version: 2.0.3
       '@types/node':
         specifier: ^20.11.16
         version: 20.11.16
@@ -1346,6 +1349,10 @@ packages:
   /@trpc/server@11.0.0-next-beta.274:
     resolution: {integrity: sha512-yMNM1K8TRmi5Nk7vbOjCzS9tEAffWKhjSe5vFiodHKOXr6TEstKlbn5CIlHWdqH0GTkuUet3ieAN5L/XM0qMKg==}
     dev: false
+
+  /@tsconfig/strictest@2.0.3:
+    resolution: {integrity: sha512-MroLvRhMbqtXI5WBSwoomro6OQS4xnCoudUrMb20JO0vLKUs0bAaCEcvM/immEBSJjFAK1l6jW1oAO8q3Ancrg==}
+    dev: true
 
   /@types/babel__core@7.20.5:
     resolution: {integrity: sha512-qoQprZvz5wQFJwMDqeseRXWv3rqMvhgpbXFfVyWhbx9X47POIA6i/+dXefEmZKoAgOaTdaIgNSMqMIU61yRyzA==}

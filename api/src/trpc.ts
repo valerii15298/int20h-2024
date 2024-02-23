@@ -8,10 +8,6 @@ declare global {
   namespace Express {
     interface Request extends clerk.LooseAuthProp {}
   }
-
-  interface CustomJwtSessionClaims {
-    // add custom claims
-  }
 }
 
 const t = initTRPC.context<Context>().create();

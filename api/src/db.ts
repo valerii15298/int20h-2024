@@ -1,18 +1,17 @@
 import { drizzle } from "drizzle-orm/postgres-js";
 import postgres from "postgres";
 import * as schema from "./schema.js";
-
-const { PGHOST, PGDATABASE, PGUSER, PGPASSWORD, ENDPOINT_ID } = process.env;
+import { env } from "./config.js";
 
 const sql = postgres({
-  host: PGHOST,
-  database: PGDATABASE,
-  username: PGUSER,
-  password: PGPASSWORD,
+  host: env.PGHOST,
+  database: env.PGDATABASE,
+  username: env.PGUSER,
+  password: env.PGPASSWORD,
   port: 5432,
   ssl: "require",
   connection: {
-    options: `project=${ENDPOINT_ID}`,
+    options: `project=${env.PGENDPOINT_ID}`,
   },
   max: 1,
 });

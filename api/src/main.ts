@@ -1,18 +1,12 @@
-import "./dotenv.js";
-
 import { ClerkExpressWithAuth } from "@clerk/clerk-sdk-node";
 import * as trpcExpress from "@trpc/server/adapters/express";
 import express from "express";
 import path from "path";
 import { createContext } from "./context.js";
 import { appRouter } from "./trpc.js";
+import { env } from "./config.js";
 
 async function main() {
-  const port = Number(process.env.PORT);
-  if (!port) {
-    throw new Error("Env var 'PORT' is not set");
-  }
-
   const app = express();
 
   app.use(express.static("public"));
@@ -34,8 +28,8 @@ async function main() {
   app.get("*", (_, res) => {
     res.sendFile(path.resolve("public/index.html"));
   });
-  app.listen(port, () => {
-    console.log("listening on port " + port.toString());
+  app.listen(env.PORT, () => {
+    console.log(`listening on port ${env.PORT}`);
   });
 }
 void main();

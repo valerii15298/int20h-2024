@@ -88,8 +88,11 @@ export function Lot({
   return (
     <Form {...form}>
       {createNewMode && "Create Lot"}
-      <form onSubmit={!isView ? form.handleSubmit(submitMap[mode]) : undefined}>
-        <Card className="flex items-stretch h-[300px] w-fit">
+      <form
+        onSubmit={!isView ? form.handleSubmit(submitMap[mode]) : undefined}
+        className="w-full"
+      >
+        <Card className="flex items-stretch h-[300px] w-full">
           <div className="min-w-80 max-w-96 flex flex-col justify-between">
             <fieldset disabled={disabledFields}>
               <CardHeader>

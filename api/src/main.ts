@@ -5,7 +5,7 @@ import { createContext } from "./context.js";
 import { appRouter } from "./trpc.js";
 import { env } from "./config.js";
 import { authMiddleware } from "./clerk.js";
-import { uploadMiddleware } from "./cloudinary.js";
+import { cdn } from "./cloudinary.js";
 
 async function main() {
   const app = express();
@@ -27,7 +27,7 @@ async function main() {
     })
   );
 
-  app.post("/upload", uploadMiddleware);
+  app.post("/upload", cdn.uploadMiddleware);
 
   app.get("*", (_, res) => {
     res.sendFile(path.resolve("public/index.html"));

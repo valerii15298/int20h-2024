@@ -43,9 +43,14 @@ export const appRouter = t.router({
       ),
     delete: t.procedure
       .input(zInt)
-      .mutation(({ input, ctx: { db } }) =>
-        db.delete(lots).where(d.eq(lots.id, input))
-      ),
+      .mutation(async ({ input, ctx: { db, cdn } }) => {
+        const resp = await db
+          .delete(lots)
+          .where(d.eq(lots.id, input))
+          .returning();
+        for (const lot of resp)
+          for (const img of lot.images) await cdn.deleteByUrl(img);
+      }),
   },
 });
 

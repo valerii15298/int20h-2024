@@ -239,9 +239,13 @@ export function Lot({
                     className="w-full"
                     key={"cancel"}
                     type="button"
-                    onClick={() =>
-                      createNewMode ? createNewMode.onCancel() : setMode("View")
-                    }
+                    onClick={() => {
+                      if (createNewMode) createNewMode.onCancel();
+                      else {
+                        setMode("View");
+                        form.reset();
+                      }
+                    }}
                   >
                     Cancel
                   </Button>

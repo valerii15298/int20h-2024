@@ -17,7 +17,6 @@ function getDefaultLot(): LotSchema {
 export function Lots() {
   const lotsQuery = trpc.lot.list.useQuery();
   const [creatingNew, setCreatingNew] = useState(false);
-  const [nextNewLot, setNextNewLot] = useState(getDefaultLot);
 
   return (
     <>
@@ -29,14 +28,11 @@ export function Lots() {
 
       {creatingNew ? (
         <Lot
-          key={nextNewLot.id}
           createNewMode={{
             onCancel() {
-              setNextNewLot(getDefaultLot);
               setCreatingNew(false);
             },
             onCreate() {
-              setNextNewLot(getDefaultLot);
               setCreatingNew(false);
             },
           }}

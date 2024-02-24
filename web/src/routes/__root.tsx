@@ -27,12 +27,12 @@ export const Route = createRootRoute({
       <header>
         <SignedIn>
           <SignOutButton>
-            <Button className="ml-auto block">Sign Out</Button>
+            <Button className="m-2 ml-auto block">Sign Out</Button>
           </SignOutButton>
         </SignedIn>
         <SignedOut>
           <SignInButton>
-            <Button className="ml-auto block">Sign In</Button>
+            <Button className="m-2 mr-auto block">Sign In</Button>
           </SignInButton>
         </SignedOut>
       </header>

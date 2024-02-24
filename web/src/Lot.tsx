@@ -1,8 +1,9 @@
+import { LotImages } from "@/LotImages";
 import { useAuth } from "@clerk/clerk-react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRef, useState } from "react";
 import { useForm } from "react-hook-form";
-import { Button, buttonVariants } from "./components/ui/button";
+import { Button } from "./components/ui/button";
 import {
   Card,
   CardContent,
@@ -22,8 +23,6 @@ import {
 import { Input } from "./components/ui/input";
 import { trpc } from "./trpc";
 import { LotSchema, lotSchema } from "./zodTypes";
-import { cn } from "@/lib/utils";
-import { LotImages } from "@/LotImages";
 
 export function Lot({
   lot,

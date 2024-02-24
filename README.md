@@ -12,8 +12,9 @@ cp .env.example .env
 
 Register at [ClerkJS](https://clerk.com) and create app
 Register at [Neon](https://neon.tech/) and create Postgres database
+Register at [Cloudinary](https://cloudinary.com/)
 
-Update environment variables in `.env` file from those provided by _Clerk_ and _Neon_ providers
+Update environment variables in `.env` file from those provided by _Clerk_, _Neon_ and _Cloudinary_ providers
 
 After that you have two options: either run with docker compose(the simplest one) or run locally
 

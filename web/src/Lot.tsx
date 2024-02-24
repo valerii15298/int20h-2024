@@ -1,6 +1,6 @@
 import { useAuth } from "@clerk/clerk-react";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Button, buttonVariants } from "./components/ui/button";
 import {
@@ -35,6 +35,7 @@ export function Lot({
     onCancel: () => void;
   };
 }) {
+  const imagesFiles = useRef<FileList>();
   const createLot = trpc.lot.create.useMutation({
     onSuccess() {
       utils.lot.list.invalidate();
@@ -53,7 +54,15 @@ export function Lot({
     },
   });
   const submitMap = {
-    Create: ({ id: _, ...lot }: LotSchema) => {
+    Create: async ({ id: _id, ...lot }: LotSchema) => {
+      lot.images = await Promise.all(
+        [...(imagesFiles.current || [])].map((f) =>
+          fetch("/upload", {
+            method: "POST",
+            body: f,
+          }).then((r) => r.text())
+        )
+      );
       createLot.mutateAsync(lot);
       setMode("View");
     },
@@ -163,15 +172,8 @@ export function Lot({
                           onChange={async (e) => {
                             const files = e.target.files;
                             if (!files) return;
-                            const imagesUrls = await Promise.all(
-                              [...files].map((f) =>
-                                fetch("/upload", {
-                                  method: "POST",
-                                  body: f,
-                                }).then((r) => r.text())
-                              )
-                            );
-                            field.onChange(imagesUrls);
+                            imagesFiles.current = files;
+                            field.onChange([...files].map(URL.createObjectURL));
                           }}
                         />
                       </FormControl>

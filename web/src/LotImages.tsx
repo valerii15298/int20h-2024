@@ -16,16 +16,15 @@ export function LotImages({ control }: { control: Control<LotSchema> }) {
   useEffect(() => {
     if (!api) return;
     api.rootNode().style.height = "100%";
-    console.log(api.slideNodes().map((n) => n.offsetWidth));
   }, [api]);
   if (!images.length) {
     return null;
   }
   return (
-    <Carousel className={`h-full a-carousel`} setApi={setApi}>
-      <CarouselContent className="h-full a-carousel-content">
-        {images.map((src, idx) => (
-          <CarouselItem className="h-full max-w-fit a-carousel-item" key={idx}>
+    <Carousel className={`h-full`} setApi={setApi}>
+      <CarouselContent className="h-full">
+        {images.map((src) => (
+          <CarouselItem className="h-full max-w-fit" key={src}>
             <img className="h-full" src={src} />
           </CarouselItem>
         ))}

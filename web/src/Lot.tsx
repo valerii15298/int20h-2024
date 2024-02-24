@@ -25,30 +25,6 @@ import { LotSchema, lotSchema } from "./zodTypes";
 import { cn } from "@/lib/utils";
 import { LotImages } from "@/LotImages";
 
-const toBase64 = (file: File) =>
-  new Promise<string>((resolve, reject) => {
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = () => {
-      const result = reader.result;
-      if (result instanceof ArrayBuffer) {
-        return resolve(arrayBufferToBase64(result));
-      }
-      resolve(result!);
-    };
-    reader.onerror = reject;
-  });
-
-function arrayBufferToBase64(buffer: ArrayBuffer) {
-  let binary = "";
-  const bytes = new Uint8Array(buffer);
-  const len = bytes.byteLength;
-  for (let i = 0; i < len; i++) {
-    binary += String.fromCharCode(bytes[i]!);
-  }
-  return window.btoa(binary);
-}
-
 export function Lot({
   lot,
   createNewMode,
@@ -169,7 +145,7 @@ export function Lot({
                   disabled={disabledFields}
                   control={form.control}
                   name="images"
-                  render={({ field: { value, ...field } }) => (
+                  render={({ field: { value: _, ...field } }) => (
                     <FormItem>
                       <FormLabel
                         className={cn(buttonVariants({ className: "w-full" }))}
@@ -187,11 +163,15 @@ export function Lot({
                           onChange={async (e) => {
                             const files = e.target.files;
                             if (!files) return;
-                            const images: string[] = [];
-                            for (let i = 0; i < files.length; i++) {
-                              images.push(await toBase64(files[i]!));
-                            }
-                            field.onChange(images);
+                            const imagesUrls = await Promise.all(
+                              [...files].map((f) =>
+                                fetch("/upload", {
+                                  method: "POST",
+                                  body: f,
+                                }).then((r) => r.text())
+                              )
+                            );
+                            field.onChange(imagesUrls);
                           }}
                         />
                       </FormControl>

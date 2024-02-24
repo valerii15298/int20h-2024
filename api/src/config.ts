@@ -1,6 +1,7 @@
 import dotenv from "dotenv";
 import { expand } from "dotenv-expand";
 import { z } from "zod";
+import { zStr } from "./zodTypes.js";
 
 const rawConfig = dotenv.config({ path: "../.env", processEnv: {} });
 if (rawConfig.error) {
@@ -14,19 +15,25 @@ if (parsedConfig.error) {
 
 const envSchema = z
   .object({
-    CLERK_SECRET_KEY: z.string(),
-    PORT: z.string().pipe(
+    CLERK_SECRET_KEY: zStr,
+
+    PORT: zStr.pipe(
       z.coerce
         .number()
         .int()
         .min(2 ** 10)
     ),
-    PGHOST: z.string(),
-    PGDATABASE: z.string(),
-    PGUSER: z.string(),
-    PGPASSWORD: z.string(),
-    PGENDPOINT_ID: z.string(),
+
+    PGHOST: zStr,
+    PGDATABASE: zStr,
+    PGUSER: zStr,
+    PGPASSWORD: zStr,
+    PGENDPOINT_ID: zStr,
     PGSSL_MODE: z.enum(["require", "allow", "prefer", "verify-full"]),
+
+    CLOUDINARY_CLOUD_NAME: zStr,
+    CLOUDINARY_API_KEY: zStr,
+    CLOUDINARY_API_SECRET: zStr,
   })
   .transform((o) => ({
     ...o,

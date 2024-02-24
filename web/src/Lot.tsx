@@ -92,7 +92,7 @@ export function Lot({
         onSubmit={!isView ? form.handleSubmit(submitMap[mode]) : undefined}
         className="w-full"
       >
-        <Card className="flex items-stretch h-[300px] w-full">
+        <Card className="flex  w-full">
           <div className="min-w-80 max-w-96 flex flex-col justify-between">
             <fieldset disabled={disabledFields}>
               <CardHeader>
@@ -249,7 +249,11 @@ export function Lot({
               )}
             </CardFooter>
           </div>
-          <LotImages control={form.control} />
+          <div className="relative overflow-auto w-full">
+            <div className="h-0 min-h-full w-full">
+              <LotImages control={form.control} />
+            </div>
+          </div>
         </Card>
       </form>
     </Form>

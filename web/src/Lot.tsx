@@ -80,7 +80,11 @@ export function Lot({
     resolver: zodResolver(lotSchema),
   });
 
-  const isPending = deleteLot.isPending || createLot.isPending;
+  const isPending =
+    deleteLot.isPending ||
+    createLot.isPending ||
+    form.formState.isSubmitting ||
+    !userId;
   const disabledFields = isView || isPending;
   return (
     <Form {...form}>
@@ -88,106 +92,117 @@ export function Lot({
       <form onSubmit={!isView ? form.handleSubmit(submitMap[mode]) : undefined}>
         <Card className="flex items-stretch h-[300px] w-fit">
           <div className="min-w-80 max-w-96 flex flex-col justify-between">
-            <CardHeader>
-              <FormField
-                disabled={disabledFields}
-                control={form.control}
-                name="name"
-                render={({ field }) =>
-                  isView ? (
-                    <CardTitle>{field.value}</CardTitle>
-                  ) : (
-                    <FormItem>
-                      <FormControl>
-                        <Input placeholder="name" {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )
-                }
-              />
-              <FormField
-                disabled={disabledFields}
-                control={form.control}
-                name="description"
-                render={({ field }) =>
-                  isView ? (
-                    <CardDescription>{field.value}</CardDescription>
-                  ) : (
-                    <FormItem>
-                      <FormControl>
-                        <Input placeholder="description" {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )
-                }
-              />
-            </CardHeader>
-            <CardContent className="grid gap-2">
-              <FormField
-                disabled={disabledFields}
-                control={form.control}
-                name="startPrice"
-                render={({ field }) =>
-                  isView ? (
-                    <FormLabel className="font-bold text-lg">
-                      Price: ${field.value}
-                    </FormLabel>
-                  ) : (
-                    <FormItem>
-                      <FormControl>
-                        <Input
-                          placeholder="Start Price"
-                          onWheel={(e) => (e.target as HTMLInputElement).blur()}
-                          type="number"
-                          {...field}
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )
-                }
-              />
-              {!isView && (
+            <fieldset disabled={disabledFields}>
+              <CardHeader>
                 <FormField
-                  disabled={disabledFields}
                   control={form.control}
-                  name="images"
-                  render={({ field: { value: _, ...field } }) => (
-                    <FormItem>
-                      <FormLabel
-                        className={cn(buttonVariants({ className: "w-full" }))}
-                      >
-                        Choose Images
-                      </FormLabel>
-                      <FormControl>
-                        <Input
-                          type="file"
-                          multiple
-                          accept="image/*"
-                          placeholder="images"
-                          className="hidden"
-                          {...field}
-                          onChange={async (e) => {
-                            const files = e.target.files;
-                            if (!files) return;
-                            imagesFiles.current = files;
-                            field.onChange([...files].map(URL.createObjectURL));
-                          }}
-                        />
-                      </FormControl>
-
-                      <FormMessage />
-                    </FormItem>
-                  )}
+                  name="name"
+                  render={({ field }) =>
+                    isView ? (
+                      <CardTitle>{field.value}</CardTitle>
+                    ) : (
+                      <FormItem>
+                        <FormControl>
+                          <Input placeholder="name" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )
+                  }
                 />
-              )}
-            </CardContent>
+                <FormField
+                  control={form.control}
+                  name="description"
+                  render={({ field }) =>
+                    isView ? (
+                      <CardDescription>{field.value}</CardDescription>
+                    ) : (
+                      <FormItem>
+                        <FormControl>
+                          <Input placeholder="description" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )
+                  }
+                />
+              </CardHeader>
+              <CardContent className="grid gap-2">
+                <FormField
+                  control={form.control}
+                  name="startPrice"
+                  render={({ field }) =>
+                    isView ? (
+                      <FormLabel className="font-bold text-lg">
+                        Price: ${field.value}
+                      </FormLabel>
+                    ) : (
+                      <FormItem>
+                        <FormControl>
+                          <Input
+                            placeholder="Start Price"
+                            onWheel={(e) =>
+                              (e.target as HTMLInputElement).blur()
+                            }
+                            type="number"
+                            {...field}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )
+                  }
+                />
+                {!isView && (
+                  <FormField
+                    control={form.control}
+                    name="images"
+                    render={({ field: { value: _, ...field } }) => (
+                      <FormItem>
+                        <FormLabel className="w-full">
+                          <Button
+                            className="w-full"
+                            onClick={(e) => {
+                              (
+                                (e.target as HTMLButtonElement)
+                                  .parentNode as HTMLLabelElement
+                              ).click();
+                            }}
+                          >
+                            Choose Images
+                          </Button>
+                        </FormLabel>
+                        <FormControl>
+                          <Input
+                            type="file"
+                            multiple
+                            accept="image/*"
+                            placeholder="images"
+                            className="hidden"
+                            {...field}
+                            onChange={(e) => {
+                              const files = e.target.files;
+                              if (!files) return;
+                              imagesFiles.current = files;
+                              field.onChange(
+                                [...files].map(URL.createObjectURL)
+                              );
+                            }}
+                          />
+                        </FormControl>
+
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                )}
+              </CardContent>
+            </fieldset>
             <CardFooter className="flex justify-evenly gap-2">
               {isView ? (
                 <>
                   <Button
+                    disabled={isPending}
                     className="w-full"
                     key="edit"
                     type="button"
@@ -200,7 +215,7 @@ export function Lot({
                     className="w-full"
                     key="delete"
                     type="button"
-                    disabled={deleteLot.isPending}
+                    disabled={isPending}
                     onClick={() => deleteLot.mutate(lot.id)}
                     variant={"destructive"}
                   >
@@ -212,12 +227,13 @@ export function Lot({
                   <Button
                     className="w-full"
                     key={mode}
-                    disabled={!userId}
+                    disabled={isPending}
                     type="submit"
                   >
                     {mode}
                   </Button>
                   <Button
+                    disabled={isPending}
                     className="w-full"
                     key={"cancel"}
                     type="button"

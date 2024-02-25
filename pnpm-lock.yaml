@@ -135,6 +135,12 @@ importers:
       '@tanstack/router-vite-plugin':
         specifier: ^1.16.1
         version: 1.16.1
+      '@tsconfig/strictest':
+        specifier: ^2.0.3
+        version: 2.0.3
+      '@tsconfig/vite-react':
+        specifier: ^3.0.0
+        version: 3.0.0
       '@types/react':
         specifier: ^18.2.43
         version: 18.2.55
@@ -1352,6 +1358,10 @@ packages:
 
   /@tsconfig/strictest@2.0.3:
     resolution: {integrity: sha512-MroLvRhMbqtXI5WBSwoomro6OQS4xnCoudUrMb20JO0vLKUs0bAaCEcvM/immEBSJjFAK1l6jW1oAO8q3Ancrg==}
+    dev: true
+
+  /@tsconfig/vite-react@3.0.0:
+    resolution: {integrity: sha512-haOFbphpavQ1+eyQjeqvlz7sRkQue/bS0GvFmraHml31Ufhv+7juUSc8PVe0In7sly+n+5zTLmzc287KciiGXg==}
     dev: true
 
   /@types/babel__core@7.20.5:

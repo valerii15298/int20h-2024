@@ -10,7 +10,7 @@ import React, { Suspense } from "react";
 import { Button } from "../components/ui/button";
 
 const TanStackRouterDevtools =
-  process.env.NODE_ENV === "production"
+  process.env["NODE_ENV"] === "production"
     ? () => null // Render nothing in production
     : React.lazy(() =>
         // Lazy load in development
@@ -23,7 +23,9 @@ const TanStackRouterDevtools =
 
 export const Route = createRootRoute({
   component: () => (
-    <ClerkProvider publishableKey={import.meta.env.VITE_CLERK_PUBLISHABLE_KEY}>
+    <ClerkProvider
+      publishableKey={import.meta.env["VITE_CLERK_PUBLISHABLE_KEY"]}
+    >
       <header>
         <SignedIn>
           <SignOutButton>

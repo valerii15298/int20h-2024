@@ -15,7 +15,7 @@ function Index() {
   const [trpcClient] = useState(() =>
     trpc.createClient({
       links: [loggerLink(), httpBatchLink({ url: "/trpc" })],
-    })
+    }),
   );
 
   return (

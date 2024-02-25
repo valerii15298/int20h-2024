@@ -59,8 +59,8 @@ export function Lot({
           fetch("/upload", {
             method: "POST",
             body: f,
-          }).then((r) => r.text())
-        )
+          }).then((r) => r.text()),
+        ),
       );
       createLot.mutateAsync(lot);
       setMode("View");
@@ -187,7 +187,7 @@ export function Lot({
                               if (!files) return;
                               imagesFiles.current = files;
                               field.onChange(
-                                [...files].map(URL.createObjectURL)
+                                [...files].map(URL.createObjectURL),
                               );
                             }}
                           />

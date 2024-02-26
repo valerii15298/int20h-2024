@@ -1,8 +1,8 @@
 {
   "folders": [
     {
-      "path": ".",
-    },
+      "path": "."
+    }
   ],
   "extensions": {
     "recommendations": [
@@ -21,15 +21,16 @@
       "waderyan.gitblame",
       "wix.vscode-import-cost",
       "yoavbls.pretty-ts-errors",
-      "AntiAntiSepticeye.vscode-color-picker",
-    ],
+      "AntiAntiSepticeye.vscode-color-picker"
+    ]
   },
   "settings": {
     "terminal.integrated.defaultProfile.linux": "fish",
+    "terminal.integrated.defaultProfile.osx": "fish",
     "typescript.tsdk": "./api/node_modules/typescript/lib",
     "npm.packageManager": "pnpm",
     "eslint.workingDirectories": ["./api", "./web"],
-    // "eslint.experimental.useFlatConfig": true,
+    "eslint.experimental.useFlatConfig": true,
     "editor.formatOnSave": true,
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.linkedEditing": true,
@@ -37,7 +38,6 @@
     "editor.stickyScroll.enabled": true,
     "editor.glyphMargin": false,
     "typescript.preferences.importModuleSpecifier": "shortest",
-    "graphql-config.load.filePath": ".graphqlrc.yml",
     "files.exclude": {
       "**/.git": true,
       "**/.svn": true,
@@ -45,7 +45,7 @@
       "**/CVS": true,
       "**/.DS_Store": true,
       "**/Thumbs.db": true,
-      "**/node_modules": true,
-    },
-  },
+      "**/node_modules": true
+    }
+  }
 }

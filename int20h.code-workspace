@@ -1,8 +1,8 @@
 {
   "folders": [
     {
-      "path": "."
-    }
+      "path": ".",
+    },
   ],
   "extensions": {
     "recommendations": [
@@ -21,8 +21,8 @@
       "waderyan.gitblame",
       "wix.vscode-import-cost",
       "yoavbls.pretty-ts-errors",
-      "AntiAntiSepticeye.vscode-color-picker"
-    ]
+      "AntiAntiSepticeye.vscode-color-picker",
+    ],
   },
   "settings": {
     "terminal.integrated.defaultProfile.linux": "fish",
@@ -45,7 +45,7 @@
       "**/CVS": true,
       "**/.DS_Store": true,
       "**/Thumbs.db": true,
-      "**/node_modules": true
-    }
-  }
+      "**/node_modules": true,
+    },
+  },
 }

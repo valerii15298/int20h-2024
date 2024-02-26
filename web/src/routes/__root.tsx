@@ -18,7 +18,7 @@ const TanStackRouterDevtools =
           default: res.TanStackRouterDevtools,
           // For Embedded Mode
           // default: res.TanStackRouterDevtoolsPanel
-        }))
+        })),
       );
 
 export const Route = createRootRoute({

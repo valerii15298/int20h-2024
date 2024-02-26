@@ -15,6 +15,6 @@
     "removeComments": true,
     "sourceMap": true
   },
-  "include": ["src", "drizzle.config.ts"],
+  "include": ["src", "drizzle.config.ts", "eslint.config.js"],
   "exclude": ["node_modules"]
 }

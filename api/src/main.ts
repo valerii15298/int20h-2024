@@ -24,7 +24,7 @@ async function main() {
     trpcExpress.createExpressMiddleware({
       router: appRouter,
       createContext,
-    })
+    }),
   );
 
   app.post("/upload", cdn.uploadMiddleware);

@@ -21,7 +21,7 @@ const envSchema = z
       z.coerce
         .number()
         .int()
-        .min(2 ** 10)
+        .min(2 ** 10),
     ),
 
     PGHOST: zStr,

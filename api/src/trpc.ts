@@ -15,7 +15,7 @@ export const appRouter = t.router({
       return Promise.all(
         lots.map(({ ownerId, ...l }) => {
           const { firstName, lastName } = allUsers.find(
-            (u) => u.id === ownerId
+            (u) => u.id === ownerId,
           )!;
           const fullName = `${firstName} ${lastName}`;
           const owner = {
@@ -26,7 +26,7 @@ export const appRouter = t.router({
             ...l,
             owner,
           };
-        })
+        }),
       );
     }),
 
@@ -34,12 +34,12 @@ export const appRouter = t.router({
     create: t.procedure
       .input(lotInputSchema)
       .mutation(({ input, ctx: { db, req } }) =>
-        db.insert(lots).values({ ...input, ownerId: req.auth.userId! })
+        db.insert(lots).values({ ...input, ownerId: req.auth.userId! }),
       ),
     update: t.procedure
       .input(lotSchema)
       .mutation(({ input, ctx: { db } }) =>
-        db.update(lots).set(input).where(d.eq(lots.id, input.id))
+        db.update(lots).set(input).where(d.eq(lots.id, input.id)),
       ),
     delete: t.procedure
       .input(zInt)

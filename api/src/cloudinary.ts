@@ -23,7 +23,7 @@ export const cdn = {
         }
         if (!image) return;
         res.send(image.secure_url);
-      }
+      },
     );
     req.pipe(fileStream);
   },

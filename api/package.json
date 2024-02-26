@@ -8,7 +8,9 @@
     "dev": "tsx watch src/main",
     "build": "tsc -p tsconfig.build.json",
     "ts": "tsc --noEmit --watch",
-    "ts:check": "tsc --noEmit"
+    "ts:check": "tsc --noEmit",
+    "lint": "eslint --report-unused-disable-directives . --fix ",
+    "format": "prettier --ignore-path ../.gitignore . --write"
   },
   "keywords": [],
   "author": "",

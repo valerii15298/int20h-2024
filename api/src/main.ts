@@ -7,7 +7,7 @@ import { env } from "./config.js";
 import { authMiddleware } from "./clerk.js";
 import { cdn } from "./cloudinary.js";
 
-async function main() {
+function main() {
   const app = express();
 
   app.use(express.static("public"));
@@ -15,6 +15,7 @@ async function main() {
   app.use(authMiddleware());
 
   app.use((req, _res, next) => {
+    // eslint-disable-next-line no-console
     console.log("⬅️ ", req.method, req.path, req.body, req.query);
     next();
   });
@@ -34,7 +35,9 @@ async function main() {
   });
 
   app.listen(env.PORT, () => {
+    // eslint-disable-next-line no-console
     console.log(`listening on port ${env.PORT}`);
   });
 }
-void main();
+
+main();

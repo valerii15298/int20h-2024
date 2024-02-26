@@ -11,7 +11,6 @@ export default tsEslint.config(
   {
     ignores: ["dist"],
   },
-
   {
     languageOptions: {
       parser: tsEslint.parser,
@@ -23,14 +22,34 @@ export default tsEslint.config(
       "@typescript-eslint": tsEslint.plugin,
     },
   },
-
   eslint.configs.all,
-  // ...tsEslint.configs.all,
+  ...tsEslint.configs.recommended,
   {
     rules: {
       "capitalized-comments": "off",
       "multiline-comment-style": "off",
       "no-warning-comments": "off",
+      "one-var": "off",
+      "sort-imports": "off",
+      "sort-keys": "off",
+      "no-await-in-loop": "off",
+      "id-length": "off",
+      "no-shadow": "off",
+      "func-style": "off",
+      camelcase: "off",
+      "no-magic-numbers": [
+        "error",
+        {
+          ignoreArrayIndexes: true,
+          ignore: [-1],
+        },
+      ],
+      "@typescript-eslint/no-namespace": [
+        "error",
+        {
+          allowDeclarations: true,
+        },
+      ],
       // "@typescript-eslint/no-unused-vars": [
       //     "warn",
       //     { argsIgnorePattern: "^_", varsIgnorePattern: "^_" },

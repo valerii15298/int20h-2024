@@ -13,16 +13,14 @@ if (parsedConfig.error) {
   throw parsedConfig.error;
 }
 
+// eslint-disable-next-line no-magic-numbers
+const MIN_PORT = 2 ** 10;
+
 const envSchema = z
   .object({
     CLERK_SECRET_KEY: zStr,
 
-    PORT: zStr.pipe(
-      z.coerce
-        .number()
-        .int()
-        .min(2 ** 10),
-    ),
+    PORT: zStr.pipe(z.coerce.number().int().min(MIN_PORT)),
 
     PGHOST: zStr,
     PGDATABASE: zStr,

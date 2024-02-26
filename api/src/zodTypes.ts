@@ -2,8 +2,13 @@ import { createInsertSchema, createSelectSchema } from "drizzle-zod";
 import { bids, lots } from "./schema.js";
 import { z } from "zod";
 
-export const zStr = z.string().min(1);
-export const zInt = z.coerce.number().int().min(1).max(Number.MAX_SAFE_INTEGER);
+const minStrLength = 1;
+export const zStr = z.string().min(minStrLength);
+export const zInt = z.coerce
+  .number()
+  .int()
+  .min(minStrLength)
+  .max(Number.MAX_SAFE_INTEGER);
 
 // LOTS
 const lotOverride = {

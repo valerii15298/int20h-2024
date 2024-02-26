@@ -22,3 +22,11 @@ ReactDOM.createRoot(document.getElementById("app")!).render(
     <RouterProvider router={router} />
   </React.StrictMode>,
 );
+
+declare global {
+  namespace NodeJS {
+    interface ProcessEnv {
+      NODE_ENV: "development" | "production" | undefined;
+    }
+  }
+}

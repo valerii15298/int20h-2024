@@ -1,16 +1,16 @@
 import {
   ClerkProvider,
-  SignedIn,
-  SignedOut,
   SignInButton,
   SignOutButton,
+  SignedIn,
+  SignedOut,
 } from "@clerk/clerk-react";
-import { createRootRoute, Outlet } from "@tanstack/react-router";
+import { Outlet, createRootRoute } from "@tanstack/react-router";
 import React, { Suspense } from "react";
 import { Button } from "../components/ui/button";
 
 const TanStackRouterDevtools =
-  process.env["NODE_ENV"] === "production"
+  process.env.NODE_ENV === "production"
     ? () => null // Render nothing in production
     : React.lazy(() =>
         // Lazy load in development
@@ -18,7 +18,7 @@ const TanStackRouterDevtools =
           default: res.TanStackRouterDevtools,
           // For Embedded Mode
           // default: res.TanStackRouterDevtoolsPanel
-        })),
+        }))
       );
 
 export const Route = createRootRoute({

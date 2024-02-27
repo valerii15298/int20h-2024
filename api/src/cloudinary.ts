@@ -1,8 +1,7 @@
-import { v2 } from "cloudinary";
+import { v2 as cloudinary } from "cloudinary";
 import { env } from "./config.js";
 import { Request, Response } from "express";
-
-export const cloudinary = v2;
+import { StatusCodes } from "http-status-codes";
 
 cloudinary.config({
   cloud_name: env.CLOUDINARY_CLOUD_NAME,
@@ -10,13 +9,11 @@ cloudinary.config({
   api_secret: env.CLOUDINARY_API_SECRET,
 });
 
-const HTTP_INTERNAL_SERVER_ERROR = 500;
-
 export const cdn = {
   uploadMiddleware(req: Request, res: Response) {
     const fileStream = cloudinary.uploader.upload_stream({}, (err, image) => {
       if (err) {
-        res.status(HTTP_INTERNAL_SERVER_ERROR).send(JSON.stringify(err));
+        res.status(StatusCodes.INTERNAL_SERVER_ERROR).send(JSON.stringify(err));
         return;
       }
       if (!image) return;

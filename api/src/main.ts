@@ -12,14 +12,13 @@ function main() {
 
   app.use(express.static("public"));
 
-  app.use(authMiddleware());
-
   app.use((req, _res, next) => {
     // eslint-disable-next-line no-console
     console.log("⬅️ ", req.method, req.path, req.body, req.query);
     next();
   });
 
+  app.use(authMiddleware());
   app.use(
     "/trpc",
     trpcExpress.createExpressMiddleware({

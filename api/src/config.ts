@@ -19,6 +19,7 @@ const MIN_PORT = 2 ** 10;
 const envSchema = z
   .object({
     CLERK_SECRET_KEY: zStr,
+    VITE_CLERK_PUBLISHABLE_KEY: zStr,
 
     PORT: zStr.pipe(z.coerce.number().int().min(MIN_PORT)),
 

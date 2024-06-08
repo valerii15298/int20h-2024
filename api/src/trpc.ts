@@ -12,9 +12,10 @@ export const appRouter = t.router({
     list: t.procedure.query(async ({ ctx: { db } }) => {
       const lots = await db.query.lots.findMany();
       const allUsers = await clerk.users.getUserList();
+
       return Promise.all(
         lots.map(({ ownerId, ...l }) => {
-          const { firstName, lastName } = allUsers.find(
+          const { firstName, lastName } = allUsers.data.find(
             (u) => u.id === ownerId,
           )!;
           const fullName = `${firstName} ${lastName}`;

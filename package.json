@@ -7,7 +7,7 @@
     "clean": "rm -rf public node_modules api/node_modules web/node_modules api/dist web/dist api/public",
     "dev": "pnpm --stream=true -r dev",
     "ts": "pnpm --stream=true -r ts",
-    "ts:check": "pnpm --stream=true -r ts:check",
+    "ts:check": "pnpm --no-bail -r ts:check",
     "db:push": "pnpm -C api exec drizzle-kit push:pg",
     "db:studio": "pnpm -C api exec drizzle-kit studio",
     "compose": "BUILDKIT_PROGRESS=plain docker compose up --build"

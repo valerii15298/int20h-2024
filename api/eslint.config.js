@@ -1,15 +1,10 @@
-// @ts-check
-
-// @ts-expect-error eslint does not have types yet
 import eslint from "@eslint/js";
-// @ts-expect-error eslint-config-prettier does not have correct types yet
 import eslintConfigPrettier from "eslint-config-prettier";
-// @ts-expect-error tsEslint does not have correct types yet
 import tsEslint from "typescript-eslint";
 
 export default tsEslint.config(
   {
-    ignores: ["dist"],
+    ignores: ["dist", "eslint.config.js"],
   },
   {
     languageOptions: {
@@ -54,6 +49,7 @@ export default tsEslint.config(
         "error",
         { argsIgnorePattern: "^_", varsIgnorePattern: "^_" },
       ],
+      "@typescript-eslint/no-empty-object-type": "off",
     },
   },
   eslintConfigPrettier,

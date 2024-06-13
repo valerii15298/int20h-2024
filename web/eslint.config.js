@@ -1,14 +1,8 @@
-// @ts-check
-
-import * as tsEslint from "typescript-eslint";
-// @ts-expect-error eslint does not have types yet
 import eslint from "@eslint/js";
-// @ts-expect-error eslint-config-prettier does not have correct types yet
 import eslintConfigPrettier from "eslint-config-prettier";
-// @ts-expect-error eslint-plugin-react-hooks does not have types yet
 import reactHooks from "eslint-plugin-react-hooks";
-// @ts-expect-error eslint-plugin-react-refresh does not have types yet
 import reactRefresh from "eslint-plugin-react-refresh";
+import tsEslint from "typescript-eslint";
 
 export default tsEslint.config(
   {

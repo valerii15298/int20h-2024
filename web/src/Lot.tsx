@@ -24,7 +24,8 @@ import {
 } from "./components/ui/form";
 import { Input } from "./components/ui/input";
 import { trpc } from "./trpc";
-import { LotSchema, lotSchema } from "./zodTypes";
+import type { LotSchema } from "./zodTypes";
+import { lotSchema } from "./zodTypes";
 
 export function Lot({
   lot,
@@ -36,49 +37,52 @@ export function Lot({
     onCancel: () => void;
   };
 }) {
+  const utils = trpc.useUtils();
+  const [mode, setMode] = useState<LotMode>(createNewMode ? "Create" : "View");
+
   const imagesFiles = useRef<FileList>();
   const createLot = trpc.lot.create.useMutation({
     onSuccess() {
-      utils.lot.list.invalidate();
       createNewMode?.onCreate();
+      void utils.lot.list.invalidate();
     },
   });
   const updateLot = trpc.lot.update.useMutation({
-    onSuccess() {
+    async onSuccess() {
       return utils.lot.list.invalidate();
     },
   });
 
   const deleteLot = trpc.lot.delete.useMutation({
-    onSuccess() {
+    async onSuccess() {
       return utils.lot.list.invalidate();
     },
   });
   const submitMap = {
     Create: async ({ id: _id, ...lot }: LotSchema) => {
       lot.images = await Promise.all(
-        [...(imagesFiles.current || [])].map((f) =>
+        [...(imagesFiles.current ?? [])].map(async (file) =>
           fetch("/upload", {
+            body: file,
             method: "POST",
-            body: f,
-          }).then((r) => r.text()),
+          }).then(async (res) => res.text()),
         ),
       );
-      createLot.mutateAsync(lot);
+      void createLot.mutateAsync(lot);
       setMode("View");
     },
-    Update: (lot: LotSchema) =>
-      updateLot.mutateAsync(lot).then(() => setMode("View")),
+    Update: async (lot: LotSchema) =>
+      updateLot.mutateAsync(lot).then(() => {
+        setMode("View");
+      }),
   } as const;
   type LotMode = keyof typeof submitMap | "View";
 
-  const [mode, setMode] = useState<LotMode>(createNewMode ? "Create" : "View");
   const isView = mode === "View";
-  const utils = trpc.useUtils();
   const { userId } = useAuth();
   const form = useForm<LotSchema>({
-    values: lot,
     resolver: zodResolver(lotSchema),
+    values: lot,
   });
 
   const isPending =
@@ -91,7 +95,7 @@ export function Lot({
     <Form {...form}>
       {createNewMode && "Create Lot"}
       <form
-        onSubmit={!isView ? form.handleSubmit(submitMap[mode]) : undefined}
+        onSubmit={isView ? undefined : void form.handleSubmit(submitMap[mode])}
         className="w-full"
       >
         <Card className="flex  w-full">
@@ -145,9 +149,9 @@ export function Lot({
                         <FormControl>
                           <Input
                             placeholder="Start Price"
-                            onWheel={(e) =>
-                              (e.target as HTMLInputElement).blur()
-                            }
+                            onWheel={(ev) => {
+                              (ev.target as HTMLInputElement).blur();
+                            }}
                             type="number"
                             {...field}
                           />
@@ -166,9 +170,9 @@ export function Lot({
                         <FormLabel className="w-full">
                           <Button
                             className="w-full"
-                            onClick={(e) => {
+                            onClick={(ev) => {
                               (
-                                (e.target as HTMLButtonElement)
+                                (ev.target as HTMLButtonElement)
                                   .parentNode as HTMLLabelElement
                               ).click();
                             }}
@@ -184,12 +188,14 @@ export function Lot({
                             placeholder="images"
                             className="hidden"
                             {...field}
-                            onChange={(e) => {
-                              const files = e.target.files;
+                            onChange={(ev) => {
+                              const { files } = ev.target;
                               if (!files) return;
                               imagesFiles.current = files;
                               field.onChange(
-                                [...files].map(URL.createObjectURL),
+                                [...files].map((file) =>
+                                  URL.createObjectURL(file),
+                                ),
                               );
                             }}
                           />
@@ -210,7 +216,9 @@ export function Lot({
                     className="w-full"
                     key="edit"
                     type="button"
-                    onClick={() => setMode("Update")}
+                    onClick={() => {
+                      setMode("Update");
+                    }}
                     variant={"secondary"}
                   >
                     Edit
@@ -220,7 +228,9 @@ export function Lot({
                     key="delete"
                     type="button"
                     disabled={isPending}
-                    onClick={() => deleteLot.mutate(lot.id)}
+                    onClick={() => {
+                      deleteLot.mutate(lot.id);
+                    }}
                     variant={"destructive"}
                   >
                     Delete

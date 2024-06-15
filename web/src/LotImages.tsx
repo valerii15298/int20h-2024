@@ -1,15 +1,16 @@
 import { useEffect, useState } from "react";
-import { Control, useWatch } from "react-hook-form";
+import type { Control } from "react-hook-form";
+import { useWatch } from "react-hook-form";
 
+import type { CarouselApi } from "@/components/ui/carousel";
 import {
   Carousel,
-  CarouselApi,
   CarouselContent,
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import { LotSchema } from "@/zodTypes";
+import type { LotSchema } from "@/zodTypes";
 
 export function LotImages({ control }: { control: Control<LotSchema> }) {
   const images = useWatch({ control, name: "images" });

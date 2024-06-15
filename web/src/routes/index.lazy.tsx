@@ -7,17 +7,13 @@ import { useState } from "react";
 import { Lots } from "../Lots";
 import { trpc } from "../trpc";
 
-export const Route = createLazyFileRoute("/")({
-  component: Index,
-});
-
 function Index() {
-  const [queryClient] = useState(() => new QueryClient());
-  const [trpcClient] = useState(() =>
-    trpc.createClient({
-      links: [loggerLink(), httpBatchLink({ url: "/trpc" })],
-    }),
-  );
+  const [queryClient] = useState(() => new QueryClient()),
+    [trpcClient] = useState(() =>
+      trpc.createClient({
+        links: [loggerLink(), httpBatchLink({ url: "/trpc" })],
+      }),
+    );
 
   return (
     <trpc.Provider client={trpcClient} queryClient={queryClient}>
@@ -29,3 +25,7 @@ function Index() {
     </trpc.Provider>
   );
 }
+
+export const Route = createLazyFileRoute("/")({
+  component: Index,
+});

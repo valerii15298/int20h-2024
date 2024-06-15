@@ -6,10 +6,8 @@ import simpleImportSort from "eslint-plugin-simple-import-sort";
 import tsEslint from "typescript-eslint";
 
 export default tsEslint.config(
-  // eslint.configs.all,
-  // ...tsEslint.configs.all,
-  js.configs.recommended,
-  ...tsEslint.configs.recommended,
+  js.configs.all,
+  ...tsEslint.configs.all,
   {
     plugins: {
       "react-hooks": reactHooks,
@@ -28,21 +26,34 @@ export default tsEslint.config(
       },
     },
     rules: {
-      "no-unused-vars": ["error", { argsIgnorePattern: "^_" }],
-      // ...reactHooks.configs.recommended.rules,
-      // "capitalized-comments": "off",
-      // "multiline-comment-style": "off",
-      // "no-warning-comments": "off",
-
+      ...reactHooks.configs.recommended.rules,
+      "max-statements": "off", // ! TODO fix this
+      "max-lines-per-function": "off", // ! TODO fix this
+      "id-length": ["error", { exceptions: ["_"] }],
+      "no-undefined": "off",
+      "no-void": "off",
+      "no-warning-comments": "off",
+      "no-duplicate-imports": "off",
+      "one-var": "off",
+      "no-inline-comments": "off",
+      "no-ternary": "off",
+      "sort-imports": "off",
+      "func-style": ["error", "declaration"],
       // Sort imports https://github.com/lydell/eslint-plugin-simple-import-sort?tab=readme-ov-file#usage
       "simple-import-sort/exports": "error",
       "simple-import-sort/imports": "error",
-      // "sort-imports": "off",
       "@typescript-eslint/no-unused-vars": [
         "error",
         { argsIgnorePattern: "^_", varsIgnorePattern: "^_" },
       ],
       "@typescript-eslint/no-namespace": ["error", { allowDeclarations: true }],
+      "@typescript-eslint/explicit-function-return-type": "off",
+      "@typescript-eslint/naming-convention": "off",
+      "@typescript-eslint/prefer-readonly-parameter-types": "off",
+      "@typescript-eslint/no-non-null-assertion": "off",
+      "@typescript-eslint/explicit-module-boundary-types": "off",
+      "@typescript-eslint/no-shadow": "off",
+      "@typescript-eslint/strict-boolean-expressions": "off",
     },
     files: ["src/**/*.{ts,tsx}"],
   },

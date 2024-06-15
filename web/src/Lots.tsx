@@ -3,15 +3,15 @@ import { useState } from "react";
 import { Button } from "./components/ui/button";
 import { Lot } from "./Lot";
 import { trpc } from "./trpc";
-import { LotSchema } from "./zodTypes";
+import type { LotSchema } from "./zodTypes";
 
 function getDefaultLot(): LotSchema {
   return {
-    name: "New lot",
     description: "Description",
+    id: Math.random(), // For optimistic updates
     images: [],
+    name: "New lot",
     startPrice: 1,
-    id: Math.random(), // for optimistic updates
   };
 }
 
@@ -40,7 +40,13 @@ export function Lots() {
           lot={getDefaultLot()}
         />
       ) : (
-        <Button onClick={() => setCreatingNew(true)}>Create Lot</Button>
+        <Button
+          onClick={() => {
+            setCreatingNew(true);
+          }}
+        >
+          Create Lot
+        </Button>
       )}
     </>
   );

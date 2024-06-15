@@ -1,12 +1,13 @@
 import {
   ClerkProvider,
-  SignInButton,
-  SignOutButton,
   SignedIn,
   SignedOut,
+  SignInButton,
+  SignOutButton,
 } from "@clerk/clerk-react";
-import { Outlet, createRootRoute } from "@tanstack/react-router";
+import { createRootRoute,Outlet } from "@tanstack/react-router";
 import React, { Suspense } from "react";
+
 import { Button } from "../components/ui/button";
 
 const TanStackRouterDevtools =

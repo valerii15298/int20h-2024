@@ -1,8 +1,9 @@
 import { useState } from "react";
+
+import { Button } from "./components/ui/button";
 import { Lot } from "./Lot";
 import { trpc } from "./trpc";
 import { LotSchema } from "./zodTypes";
-import { Button } from "./components/ui/button";
 
 function getDefaultLot(): LotSchema {
   return {

@@ -30,7 +30,6 @@
     "typescript.tsdk": "./api/node_modules/typescript/lib",
     "npm.packageManager": "pnpm",
     "eslint.workingDirectories": ["./api", "./web"],
-    "eslint.experimental.useFlatConfig": true,
     "editor.formatOnSave": true,
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.linkedEditing": true,
@@ -38,6 +37,7 @@
     "editor.stickyScroll.enabled": true,
     "editor.glyphMargin": false,
     "typescript.preferences.importModuleSpecifier": "shortest",
+    "editor.tabSize": 2,
     "files.exclude": {
       "**/.git": true,
       "**/.svn": true,

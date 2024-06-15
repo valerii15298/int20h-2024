@@ -1,8 +1,10 @@
-import { LotImages } from "@/LotImages";
 import { useAuth } from "@clerk/clerk-react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRef, useState } from "react";
 import { useForm } from "react-hook-form";
+
+import { LotImages } from "@/LotImages";
+
 import { Button } from "./components/ui/button";
 import {
   Card,

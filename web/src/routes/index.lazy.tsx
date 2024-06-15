@@ -1,10 +1,11 @@
-import { createLazyFileRoute } from "@tanstack/react-router";
 import { SignedIn } from "@clerk/clerk-react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { createLazyFileRoute } from "@tanstack/react-router";
 import { httpBatchLink, loggerLink } from "@trpc/client";
 import { useState } from "react";
-import { trpc } from "../trpc";
+
 import { Lots } from "../Lots";
+import { trpc } from "../trpc";
 
 export const Route = createLazyFileRoute("/")({
   component: Index,

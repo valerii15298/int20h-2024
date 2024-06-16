@@ -20,10 +20,6 @@ export default tsEslint.config(
         project: true,
         tsconfigRootDir: import.meta.dirname,
       },
-      globals: {
-        fetch: "readonly",
-        process: "readonly",
-      },
     },
     rules: {
       "max-statements": "off", // ! TODO fix this

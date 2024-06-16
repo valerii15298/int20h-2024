@@ -58,14 +58,10 @@ export default tsEslint.config(
       "@typescript-eslint/explicit-module-boundary-types": "off",
       "@typescript-eslint/no-shadow": "off",
       "@typescript-eslint/strict-boolean-expressions": "off",
+      "@typescript-eslint/no-magic-numbers": "off",
       "@typescript-eslint/no-empty-object-type": "off",
       "@typescript-eslint/consistent-return": "off",
-      "@typescript-eslint/no-magic-numbers": [
-        "error",
-        { ignoreTypeIndexes: true },
-      ],
     },
-    files: ["src/**/*.{ts,tsx}"],
   },
   {
     // TODO fix and add these files to eslint

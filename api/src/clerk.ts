@@ -1,8 +1,7 @@
-import type {
-  LooseAuthProp} from "@clerk/clerk-sdk-node";
+import type { LooseAuthProp } from "@clerk/clerk-sdk-node";
 import {
   createClerkClient,
-  createClerkExpressWithAuth
+  createClerkExpressWithAuth,
 } from "@clerk/clerk-sdk-node";
 
 import { env } from "./config.js";

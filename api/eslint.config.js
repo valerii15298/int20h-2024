@@ -53,10 +53,6 @@ export default tsEslint.config(
       "@typescript-eslint/no-magic-numbers": "off",
       "@typescript-eslint/no-empty-object-type": "off",
       "@typescript-eslint/consistent-return": "off",
-      "@typescript-eslint/no-magic-numbers": [
-        "error",
-        { ignoreTypeIndexes: true },
-      ],
     },
   },
   {

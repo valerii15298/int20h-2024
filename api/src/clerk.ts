@@ -1,9 +1,11 @@
-import { env } from "./config.js";
+import type {
+  LooseAuthProp} from "@clerk/clerk-sdk-node";
 import {
-  createClerkExpressWithAuth,
   createClerkClient,
-  LooseAuthProp,
+  createClerkExpressWithAuth
 } from "@clerk/clerk-sdk-node";
+
+import { env } from "./config.js";
 
 export const clerk = createClerkClient({
   secretKey: env.CLERK_SECRET_KEY,

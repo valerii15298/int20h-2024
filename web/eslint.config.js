@@ -26,7 +26,6 @@ export default tsEslint.config(
       },
     },
     rules: {
-      ...reactHooks.configs.recommended.rules,
       "max-statements": "off", // ! TODO fix this
       "max-lines-per-function": "off", // ! TODO fix this
       "id-length": ["error", { exceptions: ["_"] }],
@@ -39,6 +38,12 @@ export default tsEslint.config(
       "no-ternary": "off",
       "sort-imports": "off",
       "func-style": ["error", "declaration"],
+      "sort-keys": "off",
+      "no-await-in-loop": "off",
+      camelcase: ["error", { properties: "never" }],
+
+      ...reactHooks.configs.recommended.rules,
+
       // Sort imports https://github.com/lydell/eslint-plugin-simple-import-sort?tab=readme-ov-file#usage
       "simple-import-sort/exports": "error",
       "simple-import-sort/imports": "error",
@@ -46,6 +51,8 @@ export default tsEslint.config(
         "error",
         { argsIgnorePattern: "^_", varsIgnorePattern: "^_" },
       ],
+
+      // https://typescript-eslint.io/
       "@typescript-eslint/no-namespace": ["error", { allowDeclarations: true }],
       "@typescript-eslint/explicit-function-return-type": "off",
       "@typescript-eslint/naming-convention": "off",
@@ -54,6 +61,7 @@ export default tsEslint.config(
       "@typescript-eslint/explicit-module-boundary-types": "off",
       "@typescript-eslint/no-shadow": "off",
       "@typescript-eslint/strict-boolean-expressions": "off",
+      "@typescript-eslint/no-empty-object-type": "off",
     },
     files: ["src/**/*.{ts,tsx}"],
   },

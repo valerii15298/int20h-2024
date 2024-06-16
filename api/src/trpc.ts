@@ -1,22 +1,23 @@
 import { initTRPC } from "@trpc/server";
-import { Context } from "./context.js";
-import { lotInputSchema, lotSchema, zInt } from "./zodTypes.js";
-import { lots } from "./schema.js";
 import * as d from "drizzle-orm";
+
 import { clerk } from "./clerk.js";
+import type { Context } from "./context.js";
+import { lots } from "./schema.js";
+import { lotInputSchema, lotSchema, zInt } from "./zodTypes.js";
 
-const t = initTRPC.context<Context>().create();
+const tr = initTRPC.context<Context>().create();
 
-export const appRouter = t.router({
+export const appRouter = tr.router({
   lot: {
-    list: t.procedure.query(async ({ ctx: { db } }) => {
+    list: tr.procedure.query(async ({ ctx: { db } }) => {
       const lots = await db.query.lots.findMany();
       const allUsers = await clerk.users.getUserList();
 
       return Promise.all(
-        lots.map(({ ownerId, ...l }) => {
+        lots.map(({ ownerId, ...lot }) => {
           const { firstName, lastName } = allUsers.data.find(
-            (u) => u.id === ownerId,
+            (user) => user.id === ownerId,
           )!;
           const fullName = `${firstName} ${lastName}`;
           const owner = {
@@ -24,7 +25,7 @@ export const appRouter = t.router({
             id: ownerId,
           } as const;
           return {
-            ...l,
+            ...lot,
             owner,
           };
         }),
@@ -32,17 +33,17 @@ export const appRouter = t.router({
     }),
 
     // CRUD
-    create: t.procedure
+    create: tr.procedure
       .input(lotInputSchema)
       .mutation(({ input, ctx: { db, req } }) =>
         db.insert(lots).values({ ...input, ownerId: req.auth.userId! }),
       ),
-    update: t.procedure
+    update: tr.procedure
       .input(lotSchema)
       .mutation(({ input, ctx: { db } }) =>
         db.update(lots).set(input).where(d.eq(lots.id, input.id)),
       ),
-    delete: t.procedure
+    delete: tr.procedure
       .input(zInt)
       .mutation(async ({ input, ctx: { db, cdn } }) => {
         const resp = await db

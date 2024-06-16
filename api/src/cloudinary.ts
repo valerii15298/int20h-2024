@@ -1,7 +1,8 @@
 import { v2 as cloudinary } from "cloudinary";
-import { env } from "./config.js";
-import { Request, Response } from "express";
+import type { Request, Response } from "express";
 import { StatusCodes } from "http-status-codes";
+
+import { env } from "./config.js";
 
 cloudinary.config({
   cloud_name: env.CLOUDINARY_CLOUD_NAME,
@@ -21,7 +22,7 @@ export const cdn = {
     });
     req.pipe(fileStream);
   },
-  deleteByUrl(url: string) {
+  async deleteByUrl(url: string) {
     return cloudinary.uploader.destroy(url.split("/").at(-1)!.split(".")[0]!, {
       invalidate: true,
     });

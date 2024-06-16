@@ -1,6 +1,7 @@
 import { createInsertSchema, createSelectSchema } from "drizzle-zod";
-import { bids, lots } from "./schema.js";
 import { z } from "zod";
+
+import { bids, lots } from "./schema.js";
 
 const minStrLength = 1;
 export const zStr = z.string().min(minStrLength);

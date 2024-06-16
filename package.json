@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "clean": "rm -rf public node_modules api/node_modules web/node_modules api/dist web/dist api/public",
+    "clean": "rm -rf node_modules api/node_modules web/node_modules api/dist web/dist",
     "dev": "pnpm --stream=true -r dev",
     "ts": "pnpm --stream=true -r ts",
     "ts:check": "pnpm --no-bail -r ts:check",

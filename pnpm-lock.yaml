@@ -14,7 +14,7 @@ importers:
         specifier: ^5.0.11
         version: 5.0.11(react@18.3.1)
       '@trpc/server':
-        specifier: next
+        specifier: 11.0.0-rc.403
         version: 11.0.0-rc.403
       '@types/express':
         specifier: ^4.17.21
@@ -63,8 +63,8 @@ importers:
         specifier: ^8.5.10
         version: 8.5.10
       '@vpetryniak/eslint-config-base':
-        specifier: latest
-        version: 0.0.1(@eslint/js@9.5.0)(@types/eslint__js@8.42.3)(eslint-config-prettier@9.1.0)(eslint-plugin-simple-import-sort@12.1.0)(eslint@9.5.0)(typescript-eslint@8.0.0-alpha.30)
+        specifier: ^0.0.2
+        version: 0.0.2(@eslint/js@9.5.0)(@types/eslint__js@8.42.3)(eslint-config-prettier@9.1.0)(eslint-plugin-simple-import-sort@12.1.0)(eslint@9.5.0)(typescript-eslint@8.0.0-alpha.30)
       drizzle-kit:
         specifier: ^0.22.7
         version: 0.22.7
@@ -87,7 +87,7 @@ importers:
         specifier: ^4.15.5
         version: 4.15.5
       typescript-eslint:
-        specifier: rc-v8
+        specifier: 8.0.0-alpha.30
         version: 8.0.0-alpha.30(eslint@9.5.0)(typescript@5.4.5)
 
   web:
@@ -178,8 +178,8 @@ importers:
         specifier: ^4.3.1
         version: 4.3.1(vite@5.3.1)
       '@vpetryniak/eslint-config-base':
-        specifier: ^0.0.1
-        version: 0.0.1(@eslint/js@9.5.0)(@types/eslint__js@8.42.3)(eslint-config-prettier@9.1.0)(eslint-plugin-simple-import-sort@12.1.0)(eslint@9.5.0)(typescript-eslint@8.0.0-alpha.30)
+        specifier: ^0.0.2
+        version: 0.0.2(@eslint/js@9.5.0)(@types/eslint__js@8.42.3)(eslint-config-prettier@9.1.0)(eslint-plugin-simple-import-sort@12.1.0)(eslint@9.5.0)(typescript-eslint@8.0.0-alpha.30)
       autoprefixer:
         specifier: ^10.4.19
         version: 10.4.19(postcss@8.4.38)
@@ -211,7 +211,7 @@ importers:
         specifier: ^5.4.5
         version: 5.4.5
       typescript-eslint:
-        specifier: rc-v8
+        specifier: 8.0.0-alpha.30
         version: 8.0.0-alpha.30(eslint@9.5.0)(typescript@5.4.5)
       vite:
         specifier: ^5.3.1
@@ -2032,15 +2032,15 @@ packages:
       - supports-color
     dev: true
 
-  /@vpetryniak/eslint-config-base@0.0.1(@eslint/js@9.5.0)(@types/eslint__js@8.42.3)(eslint-config-prettier@9.1.0)(eslint-plugin-simple-import-sort@12.1.0)(eslint@9.5.0)(typescript-eslint@8.0.0-alpha.30):
-    resolution: {integrity: sha512-tjGJaGnkT7KHOlRV0Uf5mbydo/DTP8IuCVDCiLe6BcK5qjWJaY2MIBSl14pNHV62d9LwXdjFTRaIFEdP7+JMOQ==}
+  /@vpetryniak/eslint-config-base@0.0.2(@eslint/js@9.5.0)(@types/eslint__js@8.42.3)(eslint-config-prettier@9.1.0)(eslint-plugin-simple-import-sort@12.1.0)(eslint@9.5.0)(typescript-eslint@8.0.0-alpha.30):
+    resolution: {integrity: sha512-3TekykL8ZQWEo64Nv13KeHOsHcPcq9J+jmzZcitsgEhwiAQHkxpes8xziDvLegNbkqY3t9HYtQI4r8NjREpaWQ==}
     peerDependencies:
       '@eslint/js': ^9.5.0
       '@types/eslint__js': ^8.42.3
-      eslint: 9.5.0
+      eslint: ^9.5.0
       eslint-config-prettier: ^9.1.0
       eslint-plugin-simple-import-sort: ^12.1.0
-      typescript-eslint: 8.0.0-alpha.28
+      typescript-eslint: rc-v8
     dependencies:
       '@eslint/js': 9.5.0
       '@types/eslint__js': 8.42.3

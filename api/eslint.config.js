@@ -18,6 +18,7 @@ export default tsEslint.config(
       },
     },
     rules: {
+      "no-useless-assignment": "off",
       "id-length": ["error", { exceptions: ["_"] }],
       "no-undefined": "off",
       "no-void": "off",
@@ -51,6 +52,11 @@ export default tsEslint.config(
       "@typescript-eslint/strict-boolean-expressions": "off",
       "@typescript-eslint/no-magic-numbers": "off",
       "@typescript-eslint/no-empty-object-type": "off",
+      "@typescript-eslint/consistent-return": "off",
+      "@typescript-eslint/no-magic-numbers": [
+        "error",
+        { ignoreTypeIndexes: true },
+      ],
     },
   },
   {

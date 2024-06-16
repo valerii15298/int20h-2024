@@ -24,6 +24,7 @@ export default tsEslint.config(
     rules: {
       "max-statements": "off", // ! TODO fix this
       "max-lines-per-function": "off", // ! TODO fix this
+      "no-useless-assignment": "off",
       "id-length": ["error", { exceptions: ["_"] }],
       "no-undefined": "off",
       "no-void": "off",
@@ -58,6 +59,11 @@ export default tsEslint.config(
       "@typescript-eslint/no-shadow": "off",
       "@typescript-eslint/strict-boolean-expressions": "off",
       "@typescript-eslint/no-empty-object-type": "off",
+      "@typescript-eslint/consistent-return": "off",
+      "@typescript-eslint/no-magic-numbers": [
+        "error",
+        { ignoreTypeIndexes: true },
+      ],
     },
     files: ["src/**/*.{ts,tsx}"],
   },
@@ -70,7 +76,6 @@ export default tsEslint.config(
       "postcss.config.js",
       "eslint.config.js",
       "src/routeTree.gen.ts",
-      "src/components/*",
     ],
   },
   configPrettier,

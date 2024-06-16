@@ -95,7 +95,8 @@ export function Lot({
     <Form {...form}>
       {createNewMode && "Create Lot"}
       <form
-        onSubmit={isView ? undefined : void form.handleSubmit(submitMap[mode])}
+        // eslint-disable-next-line @typescript-eslint/no-misused-promises
+        onSubmit={isView ? undefined : form.handleSubmit(submitMap[mode])}
         className="w-full"
       >
         <Card className="flex  w-full">

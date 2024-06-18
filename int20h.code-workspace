@@ -105,6 +105,12 @@
     "terminal.integrated.fontFamily": "'Hack Nerd Font'",
     "terminal.integrated.fontSize": 14,
     "terminal.integrated.defaultProfile.linux": "fish",
+    "terminal.integrated.profiles.osx": {
+      "fish": {
+        "path": "/bin/zsh",
+        "args": ["-c", "fish"],
+      },
+    },
     "terminal.integrated.defaultProfile.osx": "fish",
 
     "npm.packageManager": "pnpm",

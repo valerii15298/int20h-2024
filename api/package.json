@@ -10,9 +10,9 @@
     "ts": "tsc --noEmit --watch",
     "ts:check": "tsc --noEmit",
     "lint": "eslint --report-unused-disable-directives",
+    "format": "prettier --ignore-path ../.gitignore . --check",
     "lint:fix": "eslint --report-unused-disable-directives --fix",
-    "format:check": "prettier --ignore-path ../.gitignore . --check",
-    "format": "prettier --ignore-path ../.gitignore . --write"
+    "format:fix": "prettier --ignore-path ../.gitignore . --write"
   },
   "keywords": [],
   "author": "",

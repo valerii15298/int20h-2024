@@ -6,11 +6,13 @@
   "scripts": {
     "dev": "vite --host",
     "build": "tsr generate && tsc && vite build",
-    "lint": "eslint --report-unused-disable-directives --fix",
-    "format": "prettier --ignore-path ../.gitignore . --write",
     "preview": "vite preview",
     "ts": "tsc --noEmit --watch",
-    "ts:check": "tsc --noEmit"
+    "ts:check": "tsc --noEmit",
+    "lint": "eslint --report-unused-disable-directives",
+    "lint:fix": "eslint --report-unused-disable-directives --fix",
+    "format:check": "prettier --ignore-path ../.gitignore . --check",
+    "format": "prettier --ignore-path ../.gitignore . --write"
   },
   "dependencies": {
     "@clerk/clerk-react": "^5.2.4",

@@ -78,7 +78,6 @@
     },
 
     "typescript.updateImportsOnFileMove.enabled": "always",
-    "typescript.preferences.importModuleSpecifier": "project-relative",
     "typescript.implementationsCodeLens.enabled": true,
     "typescript.referencesCodeLens.enabled": true,
     "typescript.enablePromptUseWorkspaceTsdk": true,
@@ -93,7 +92,6 @@
     "gitlens.currentLine.scrollable": false,
     "gitlens.hovers.currentLine.over": "line",
 
-    "eslint.workingDirectories": ["./api", "./web"],
     "eslint.validate": ["typescript", "typescriptreact"],
 
     "npm.packageManager": "pnpm",

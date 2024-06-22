@@ -17,6 +17,10 @@
       "visualstudioexptteam.intellicode-api-usage-examples",
       "visualstudioexptteam.vscodeintellicode",
       "eamodio.gitlens",
+      "shyykoserhiy.git-autoconfig",
+      "humao.rest-client",
+      "jock.svg",
+      "bradlc.vscode-tailwindcss",
     ],
   },
   "settings": {

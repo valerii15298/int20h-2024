@@ -24,15 +24,6 @@
     ],
   },
   "settings": {
-    "window.autoDetectColorScheme": true,
-
-    "workbench.editor.showTabs": "none",
-
-    "zenMode.centerLayout": false,
-    "zenMode.showTabs": "none",
-
-    "breadcrumbs.enabled": false,
-
     "editor.minimap.enabled": false,
     "editor.linkedEditing": true,
     "editor.formatOnSave": true,
@@ -57,48 +48,6 @@
       "source.fixAll": "explicit",
     },
 
-    "notebook.showFoldingControls": "never",
-
-    "git.autofetch": "all",
-
-    "git-autoconfig.configList": [
-      {
-        "user.email": "valerii15298@gmail.com",
-        "user.name": "Valerii Petryniak",
-      },
-    ],
-
-    "github.copilot.enable": {
-      "*": true,
-      "plaintext": false,
-      "markdown": true,
-      "scminput": false,
-      "yaml": false,
-    },
-
-    "gitlens.currentLine.scrollable": false,
-    "gitlens.hovers.currentLine.over": "line",
-
-    "files.autoSave": "onFocusChange",
-    "files.associations": {
-      "*.tsx": "typescriptreact",
-      "*.ts": "typescript",
-    },
-
-    "typescript.updateImportsOnFileMove.enabled": "always",
-    "typescript.preferences.importModuleSpecifier": "project-relative",
-    "typescript.implementationsCodeLens.enabled": true,
-    "typescript.referencesCodeLens.enabled": true,
-    "typescript.enablePromptUseWorkspaceTsdk": true,
-    "typescript.tsdk": "./api/node_modules/typescript/lib",
-    "typescript.suggest.completeFunctionCalls": true,
-    "typescript.tsserver.maxTsServerMemory": 6000,
-    "typescript.referencesCodeLens.showOnAllFunctions": true, // todo what is this?
-
-    "javascript.updateImportsOnFileMove.enabled": "always",
-
-    "diffEditor.renderSideBySide": false,
-
     "terminal.integrated.shellIntegration.enabled": true,
     "terminal.integrated.suggest.enabled": true,
     "terminal.integrated.shellIntegration.decorationsEnabled": "both",
@@ -113,9 +62,12 @@
     },
     "terminal.integrated.defaultProfile.osx": "fish",
 
-    "npm.packageManager": "pnpm",
-    "eslint.workingDirectories": ["./api", "./web"],
-
+    "files.autoSave": "onFocusChange",
+    "files.insertFinalNewline": true,
+    "files.associations": {
+      "*.tsx": "typescriptreact",
+      "*.ts": "typescript",
+    },
     "files.exclude": {
       "**/.git": true,
       "**/.svn": true,
@@ -125,5 +77,43 @@
       "**/Thumbs.db": true,
       "**/node_modules": true,
     },
+
+    "typescript.updateImportsOnFileMove.enabled": "always",
+    "typescript.preferences.importModuleSpecifier": "project-relative",
+    "typescript.implementationsCodeLens.enabled": true,
+    "typescript.referencesCodeLens.enabled": true,
+    "typescript.enablePromptUseWorkspaceTsdk": true,
+    "typescript.tsdk": "./api/node_modules/typescript/lib",
+    "typescript.suggest.completeFunctionCalls": true,
+    "typescript.tsserver.maxTsServerMemory": 6000,
+    "typescript.referencesCodeLens.showOnAllFunctions": true, // todo what is this?
+
+    "zenMode.centerLayout": false,
+    "zenMode.showTabs": "none",
+
+    "gitlens.currentLine.scrollable": false,
+    "gitlens.hovers.currentLine.over": "line",
+
+    "npm.packageManager": "pnpm",
+    "eslint.workingDirectories": ["./api", "./web"],
+    "window.autoDetectColorScheme": true,
+    "workbench.editor.showTabs": "none",
+    "breadcrumbs.enabled": false,
+    "diffEditor.renderSideBySide": false,
+    "notebook.showFoldingControls": "never",
+    "git-autoconfig.configList": [
+      {
+        "user.email": "valerii15298@gmail.com",
+        "user.name": "Valerii Petryniak",
+      },
+    ],
+    "github.copilot.enable": {
+      "*": true,
+      "plaintext": false,
+      "markdown": true,
+      "scminput": false,
+      "yaml": false,
+    },
+    "git.autofetch": "all",
   },
 }

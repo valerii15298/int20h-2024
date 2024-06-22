@@ -6,21 +6,17 @@
   ],
   "extensions": {
     "recommendations": [
-      "ms-azuretools.vscode-docker",
       "streetsidesoftware.code-spell-checker",
-      "formulahendry.auto-rename-tag",
-      "aaron-bond.better-comments",
+      "Gruntfuggly.todo-tree",
       "dbaeumer.vscode-eslint",
-      "donjayamanne.githistory",
-      "eamodio.gitlens",
       "esbenp.prettier-vscode",
       "github.copilot",
+      "GitHub.copilot-chat",
+      "yoavbls.pretty-ts-errors",
+      "wix.vscode-import-cost",
       "visualstudioexptteam.intellicode-api-usage-examples",
       "visualstudioexptteam.vscodeintellicode",
-      "waderyan.gitblame",
-      "wix.vscode-import-cost",
-      "yoavbls.pretty-ts-errors",
-      "AntiAntiSepticeye.vscode-color-picker",
+      "eamodio.gitlens",
     ],
   },
   "settings": {
@@ -29,7 +25,6 @@
     "editor.formatOnSave": true,
     "editor.fontFamily": "'Hack Nerd Font'",
     "editor.fontSize": 15,
-    "eslint.validate": ["typescript", "typescriptreact"],
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.guides.bracketPairs": true,
     "editor.guides.bracketPairsHorizontal": true,
@@ -94,13 +89,16 @@
     "gitlens.currentLine.scrollable": false,
     "gitlens.hovers.currentLine.over": "line",
 
-    "npm.packageManager": "pnpm",
     "eslint.workingDirectories": ["./api", "./web"],
+    "eslint.validate": ["typescript", "typescriptreact"],
+
+    "npm.packageManager": "pnpm",
     "window.autoDetectColorScheme": true,
     "workbench.editor.showTabs": "none",
     "breadcrumbs.enabled": false,
     "diffEditor.renderSideBySide": false,
     "notebook.showFoldingControls": "never",
+    "git.autofetch": "all",
     "git-autoconfig.configList": [
       {
         "user.email": "valerii15298@gmail.com",
@@ -114,6 +112,5 @@
       "scminput": false,
       "yaml": false,
     },
-    "git.autofetch": "all",
   },
 }

@@ -14,5 +14,11 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "packageManager": "pnpm@9.4.0",
+  "engines": {
+    "vscode": "^1.22.0",
+    "node": "22.3.0",
+    "pnpm": "9.4.0"
+  }
 }

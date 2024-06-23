@@ -1,5 +1,10 @@
 # int20h-2024 [Click](https://hackathon-int20h-2024.fly.dev/) to see Deployed App at https://hackathon-int20h-2024.fly.dev/
 
+## Setup Node.js manager:
+
+Install [FNM](https://github.com/Schniz/fnm)
+Configure FNM with: `fnm env --use-on-cd --version-file-strategy=recursive --corepack-enabled --resolve-engines`
+
 ## Pre-setup
 
 Clone the app and create .env file:

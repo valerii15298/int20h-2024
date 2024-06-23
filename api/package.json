@@ -14,6 +14,10 @@
     "lint:fix": "eslint --report-unused-disable-directives --fix",
     "format:fix": "prettier --ignore-path ../.gitignore . --write"
   },
+  "lint-staged": {
+    "*.{ts,tsx,js,jsx,yaml,yml,cjs,mjs,html,css,json}": "prettier --write",
+    "*.{ts,tsx}": "eslint --fix"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",

@@ -10,7 +10,8 @@
     "ts:check": "pnpm --no-bail -r ts:check",
     "db:push": "pnpm -C api exec drizzle-kit push:pg",
     "db:studio": "pnpm -C api exec drizzle-kit studio",
-    "compose": "BUILDKIT_PROGRESS=plain docker compose up --build"
+    "compose": "BUILDKIT_PROGRESS=plain docker compose up --build",
+    "prepare": "husky"
   },
   "keywords": [],
   "author": "",
@@ -20,5 +21,9 @@
     "vscode": "^1.22.0",
     "node": "22.3.0",
     "pnpm": "9.4.0"
+  },
+  "devDependencies": {
+    "husky": "^9.0.11",
+    "lint-staged": "^15.2.7"
   }
 }

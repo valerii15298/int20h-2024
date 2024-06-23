@@ -1,0 +1,10 @@
+exit_code=0
+
+pnpm -r --no-bail lint || { echo "Lint failed: exit code $?" && exit_code=1; }
+echo "\n==========================================================================================================\n"
+pnpm -r --no-bail format || { echo "Format failed: exit code $?" && exit_code=1; }
+echo "\n==========================================================================================================\n"
+pnpm -r --no-bail ts:check || { echo "TypeScript check failed: exit code $?" && exit_code=1; }
+echo "\n==========================================================================================================\n"
+
+exit $exit_code

@@ -8,7 +8,7 @@ import type { LotSchema } from "./zodTypes";
 function getDefaultLot(): LotSchema {
   return {
     description: "Description",
-    id: Math.random(), // For optimistic updates
+    id: Math.random(), // for optimistic updates
     images: [],
     name: "New lot",
     startPrice: 1,

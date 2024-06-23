@@ -14,8 +14,8 @@ importers:
         specifier: ^5.0.11
         version: 5.0.12(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@trpc/server':
-        specifier: 11.0.0-rc.403
-        version: 11.0.0-rc.403
+        specifier: next
+        version: 11.0.0-rc.421
       '@types/express':
         specifier: ^4.17.21
         version: 4.17.21
@@ -63,8 +63,8 @@ importers:
         specifier: ^8.5.10
         version: 8.5.10
       '@vpetryniak/eslint-config-base':
-        specifier: ^0.0.2
-        version: 0.0.2(@eslint/js@9.5.0)(@types/eslint__js@8.42.3)(eslint-config-prettier@9.1.0(eslint@9.5.0))(eslint-plugin-simple-import-sort@12.1.0(eslint@9.5.0))(eslint@9.5.0)(typescript-eslint@8.0.0-alpha.30(eslint@9.5.0)(typescript@5.5.2))
+        specifier: ^0.0.3
+        version: 0.0.3(@eslint/js@9.5.0)(@types/eslint__js@8.42.3)(eslint-config-prettier@9.1.0(eslint@9.5.0))(eslint-plugin-simple-import-sort@12.1.0(eslint@9.5.0))(eslint@9.5.0)(typescript-eslint@8.0.0-alpha.30(eslint@9.5.0)(typescript@5.5.2))
       drizzle-kit:
         specifier: ^0.22.7
         version: 0.22.7
@@ -115,10 +115,10 @@ importers:
         version: 1.40.0(@tanstack/react-router@1.40.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(csstype@3.1.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@trpc/client':
         specifier: next
-        version: 11.0.0-rc.421(@trpc/server@11.0.0-rc.403)
+        version: 11.0.0-rc.421(@trpc/server@11.0.0-rc.421)
       '@trpc/react-query':
         specifier: next
-        version: 11.0.0-rc.421(@tanstack/react-query@5.45.1(react@18.3.1))(@trpc/client@11.0.0-rc.421(@trpc/server@11.0.0-rc.403))(@trpc/server@11.0.0-rc.403)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        version: 11.0.0-rc.421(@tanstack/react-query@5.45.1(react@18.3.1))(@trpc/client@11.0.0-rc.421(@trpc/server@11.0.0-rc.421))(@trpc/server@11.0.0-rc.421)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       class-variance-authority:
         specifier: ^0.7.0
         version: 0.7.0
@@ -129,8 +129,8 @@ importers:
         specifier: 8.1.5
         version: 8.1.5(react@18.3.1)
       lucide-react:
-        specifier: ^0.395.0
-        version: 0.395.0(react@18.3.1)
+        specifier: ^0.396.0
+        version: 0.396.0(react@18.3.1)
       react:
         specifier: ^18.3.1
         version: 18.3.1
@@ -178,8 +178,8 @@ importers:
         specifier: ^4.3.1
         version: 4.3.1(vite@5.3.1(@types/node@20.14.8))
       '@vpetryniak/eslint-config-base':
-        specifier: ^0.0.2
-        version: 0.0.2(@eslint/js@9.5.0)(@types/eslint__js@8.42.3)(eslint-config-prettier@9.1.0(eslint@9.5.0))(eslint-plugin-simple-import-sort@12.1.0(eslint@9.5.0))(eslint@9.5.0)(typescript-eslint@8.0.0-alpha.30(eslint@9.5.0)(typescript@5.5.2))
+        specifier: ^0.0.3
+        version: 0.0.3(@eslint/js@9.5.0)(@types/eslint__js@8.42.3)(eslint-config-prettier@9.1.0(eslint@9.5.0))(eslint-plugin-simple-import-sort@12.1.0(eslint@9.5.0))(eslint@9.5.0)(typescript-eslint@8.0.0-alpha.30(eslint@9.5.0)(typescript@5.5.2))
       autoprefixer:
         specifier: ^10.4.19
         version: 10.4.19(postcss@8.4.38)
@@ -1107,8 +1107,8 @@ packages:
       react: '>=18.2.0'
       react-dom: '>=18.2.0'
 
-  '@trpc/server@11.0.0-rc.403':
-    resolution: {integrity: sha512-DIt0GijW3nzq3zk9rFw1Ly/b6E9eTcsKV+caOMSeJl6A7Pby8QpdKaN8yJZDHhEojULeIVFNE4Izals5T0fQgg==}
+  '@trpc/server@11.0.0-rc.421':
+    resolution: {integrity: sha512-4epaOaNiqvIDuyA7FfjthKcUvFMfFoKwBTUzhu/xLGeSClgLZ0v+1HWRPPWGFLMu1ZKLHMeeySXhnY4yLFlYjw==}
 
   '@tsconfig/strictest@2.0.5':
     resolution: {integrity: sha512-ec4tjL2Rr0pkZ5hww65c+EEPYwxOi4Ryv+0MtjeaSQRJyq322Q27eOQiFbuNgw2hpL4hB1/W/HBGk3VKS43osg==}
@@ -1248,15 +1248,15 @@ packages:
     peerDependencies:
       vite: ^4.2.0 || ^5.0.0
 
-  '@vpetryniak/eslint-config-base@0.0.2':
-    resolution: {integrity: sha512-3TekykL8ZQWEo64Nv13KeHOsHcPcq9J+jmzZcitsgEhwiAQHkxpes8xziDvLegNbkqY3t9HYtQI4r8NjREpaWQ==}
+  '@vpetryniak/eslint-config-base@0.0.3':
+    resolution: {integrity: sha512-rzi9cqLU0ndATq7b0rcgM0yumTudW/OnUQbuWo1/6K66fGA+Cs/gAj81nN6lCHY5zWaVcVAi2zUsEJSfuQKTWw==}
     peerDependencies:
       '@eslint/js': ^9.5.0
       '@types/eslint__js': ^8.42.3
       eslint: ^9.5.0
       eslint-config-prettier: ^9.1.0
       eslint-plugin-simple-import-sort: ^12.1.0
-      typescript-eslint: rc-v8
+      typescript-eslint: 8.0.0-alpha.30
 
   accepts@1.3.8:
     resolution: {integrity: sha512-PYAthTa2m2VKxuvSD3DPC/Gy+U+sOA1LAuT8mkmRuvw+NACSaeXEQ+NHcVF7rONl6qcaxV3Uuemwawk+7+SJLw==}
@@ -2033,8 +2033,8 @@ packages:
   lru-cache@5.1.1:
     resolution: {integrity: sha512-KpNARQA3Iwv+jTA0utUVVbrh+Jlrr1Fv0e56GGzAFOXN7dk/FviaDW8LHmK52DlcH4WP2n6gI8vN1aesBFgo9w==}
 
-  lucide-react@0.395.0:
-    resolution: {integrity: sha512-6hzdNH5723A4FLaYZWpK50iyZH8iS2Jq5zuPRRotOFkhu6kxxJiebVdJ72tCR5XkiIeYFOU5NUawFZOac+VeYw==}
+  lucide-react@0.396.0:
+    resolution: {integrity: sha512-N/zP+9vEfEYHiMWMpjwH/M5diaV0e4UFe07BpgdzaRYce5QvXi87hixf7F0Xqdr3zuX/9u7H/2D4MVXIK22O0A==}
     peerDependencies:
       react: ^16.5.1 || ^17.0.0 || ^18.0.0
 
@@ -3463,19 +3463,19 @@ snapshots:
 
   '@tanstack/store@0.1.3': {}
 
-  '@trpc/client@11.0.0-rc.421(@trpc/server@11.0.0-rc.403)':
+  '@trpc/client@11.0.0-rc.421(@trpc/server@11.0.0-rc.421)':
     dependencies:
-      '@trpc/server': 11.0.0-rc.403
+      '@trpc/server': 11.0.0-rc.421
 
-  '@trpc/react-query@11.0.0-rc.421(@tanstack/react-query@5.45.1(react@18.3.1))(@trpc/client@11.0.0-rc.421(@trpc/server@11.0.0-rc.403))(@trpc/server@11.0.0-rc.403)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@trpc/react-query@11.0.0-rc.421(@tanstack/react-query@5.45.1(react@18.3.1))(@trpc/client@11.0.0-rc.421(@trpc/server@11.0.0-rc.421))(@trpc/server@11.0.0-rc.421)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@tanstack/react-query': 5.45.1(react@18.3.1)
-      '@trpc/client': 11.0.0-rc.421(@trpc/server@11.0.0-rc.403)
-      '@trpc/server': 11.0.0-rc.403
+      '@trpc/client': 11.0.0-rc.421(@trpc/server@11.0.0-rc.421)
+      '@trpc/server': 11.0.0-rc.421
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
 
-  '@trpc/server@11.0.0-rc.403': {}
+  '@trpc/server@11.0.0-rc.421': {}
 
   '@tsconfig/strictest@2.0.5': {}
 
@@ -3668,7 +3668,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@vpetryniak/eslint-config-base@0.0.2(@eslint/js@9.5.0)(@types/eslint__js@8.42.3)(eslint-config-prettier@9.1.0(eslint@9.5.0))(eslint-plugin-simple-import-sort@12.1.0(eslint@9.5.0))(eslint@9.5.0)(typescript-eslint@8.0.0-alpha.30(eslint@9.5.0)(typescript@5.5.2))':
+  '@vpetryniak/eslint-config-base@0.0.3(@eslint/js@9.5.0)(@types/eslint__js@8.42.3)(eslint-config-prettier@9.1.0(eslint@9.5.0))(eslint-plugin-simple-import-sort@12.1.0(eslint@9.5.0))(eslint@9.5.0)(typescript-eslint@8.0.0-alpha.30(eslint@9.5.0)(typescript@5.5.2))':
     dependencies:
       '@eslint/js': 9.5.0
       '@types/eslint__js': 8.42.3
@@ -4436,7 +4436,7 @@ snapshots:
     dependencies:
       yallist: 3.1.1
 
-  lucide-react@0.395.0(react@18.3.1):
+  lucide-react@0.396.0(react@18.3.1):
     dependencies:
       react: 18.3.1
 

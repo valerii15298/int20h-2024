@@ -29,11 +29,13 @@ import { lotSchema } from "./zodTypes";
 
 export function Lot({
   lot,
+
   createNewMode,
 }: {
   lot: LotSchema;
   createNewMode?: {
     onCreate: () => void;
+
     onCancel: () => void;
   };
 }) {
@@ -95,8 +97,11 @@ export function Lot({
     <Form {...form}>
       {createNewMode && "Create Lot"}
       <form
-        // eslint-disable-next-line @typescript-eslint/no-misused-promises
-        onSubmit={isView ? undefined : form.handleSubmit(submitMap[mode])}
+        onSubmit={
+          isView
+            ? undefined
+            : (...args) => void form.handleSubmit(submitMap[mode])(...args)
+        }
         className="w-full"
       >
         <Card className="flex  w-full">

@@ -3,8 +3,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 
-import { LotImages } from "@/LotImages";
-
 import { Button } from "./components/ui/button";
 import {
   Card,
@@ -23,19 +21,18 @@ import {
   FormMessage,
 } from "./components/ui/form";
 import { Input } from "./components/ui/input";
+import { LotImages } from "./LotImages";
 import { trpc } from "./trpc";
 import type { LotSchema } from "./zodTypes";
 import { lotSchema } from "./zodTypes";
 
 export function Lot({
   lot,
-
   createNewMode,
 }: {
   lot: LotSchema;
   createNewMode?: {
     onCreate: () => void;
-
     onCancel: () => void;
   };
 }) {

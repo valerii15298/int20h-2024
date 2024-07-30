@@ -81,7 +81,7 @@
     "typescript.implementationsCodeLens.enabled": true,
     "typescript.referencesCodeLens.enabled": true,
     "typescript.enablePromptUseWorkspaceTsdk": true,
-    "typescript.tsdk": "./api/node_modules/typescript/lib",
+    "typescript.tsdk": "node_modules/typescript/lib",
     "typescript.suggest.completeFunctionCalls": true,
     "typescript.tsserver.maxTsServerMemory": 6000,
     "typescript.referencesCodeLens.showOnAllFunctions": true, // todo what is this?

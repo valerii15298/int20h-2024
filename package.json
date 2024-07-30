@@ -5,10 +5,11 @@
   "main": "index.js",
   "scripts": {
     "clean": "rm -rf node_modules api/node_modules web/node_modules api/dist web/dist",
+    "preview": "pnpm --stream=true -r preview",
     "dev": "pnpm --stream=true -r dev",
     "ts": "pnpm --stream=true -r ts",
     "ts:check": "pnpm --no-bail -r ts:check",
-    "db:push": "pnpm -C api exec drizzle-kit push:pg",
+    "db:push": "pnpm -C api exec drizzle-kit push",
     "db:studio": "pnpm -C api exec drizzle-kit studio",
     "compose": "BUILDKIT_PROGRESS=plain docker compose up --build",
     "prepare": "husky"
@@ -23,7 +24,10 @@
     "pnpm": "9.4.0"
   },
   "devDependencies": {
-    "husky": "^9.0.11",
+    "husky": "^9.1.4",
     "lint-staged": "^15.2.7"
+  },
+  "dependencies": {
+    "typescript": "^5.5.4"
   }
 }

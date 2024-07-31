@@ -101,8 +101,8 @@ export function Lot({
         }
         className="w-full"
       >
-        <Card className="flex  w-full">
-          <div className="min-w-80 max-w-96 flex flex-col justify-between">
+        <Card className="flex w-full">
+          <div className="flex min-w-80 max-w-96 flex-col justify-between">
             <fieldset disabled={disabledFields}>
               <CardHeader>
                 <FormField
@@ -144,7 +144,7 @@ export function Lot({
                   name="startPrice"
                   render={({ field }) =>
                     isView ? (
-                      <FormLabel className="font-bold text-lg">
+                      <FormLabel className="text-lg font-bold">
                         Price: ${field.value}
                       </FormLabel>
                     ) : (
@@ -268,7 +268,7 @@ export function Lot({
               )}
             </CardFooter>
           </div>
-          <div className="relative overflow-auto w-full">
+          <div className="relative w-full overflow-auto">
             <div className="h-0 min-h-full w-full">
               <LotImages control={form.control} />
             </div>

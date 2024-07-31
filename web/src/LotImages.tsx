@@ -30,11 +30,11 @@ export function LotImages({ control }: { control: Control<LotSchema> }) {
             <img className="h-full" src={src} />
           </CarouselItem>
         ))}
-        <CarouselItem className="max-w-max mx-auto grid place-items-center">
+        <CarouselItem className="mx-auto grid max-w-max place-items-center p-4">
           {
             // TODO add image feature
           }
-          Add image
+          +
         </CarouselItem>
       </CarouselContent>
       <CarouselPrevious className="left-1 top-5" />

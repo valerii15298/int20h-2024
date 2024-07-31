@@ -1,3 +1,5 @@
+// @ts-check
+
 import tsEslint from "typescript-eslint";
 import baseConfig from "@vpetryniak/eslint-config-base";
 import reactHooks from "eslint-plugin-react-hooks";
@@ -8,14 +10,15 @@ export default tsEslint.config(
   {
     languageOptions: {
       parserOptions: {
-        project: true,
-        tsconfigRootDir: import.meta.dirname,
+        projectService: true,
       },
     },
     plugins: {
+      // @ts-ignore
       "react-hooks": reactHooks,
       "react-refresh": reactRefresh,
     },
+    // @ts-ignore
     rules: {
       ...reactHooks.configs.recommended.rules,
       "react-refresh/only-export-components": "error",

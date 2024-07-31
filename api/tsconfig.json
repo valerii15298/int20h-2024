@@ -1,20 +1,10 @@
 {
-  "extends": "@tsconfig/strictest/tsconfig.json",
+  "extends": "../tsconfig.base.json",
   "compilerOptions": {
     "outDir": "dist",
-    "lib": ["ESNext"],
-    "target": "ESNext",
     "moduleResolution": "NodeNext",
     "module": "NodeNext",
-    "allowJs": false,
-    "checkJs": false,
-    "pretty": true,
-    "resolveJsonModule": true,
-    "incremental": true,
-    "moduleDetection": "force",
-    "removeComments": true,
-    "sourceMap": true
-  },
-  "include": ["src", "drizzle.config.ts"],
-  "exclude": ["node_modules"]
+    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.tsbuildinfo",
+    "composite": true
+  }
 }

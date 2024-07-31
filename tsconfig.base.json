@@ -1,0 +1,11 @@
+{
+  "extends": "@tsconfig/strictest/tsconfig.json",
+  "compilerOptions": {
+    "lib": ["ESNext"],
+    "target": "ESNext",
+    "sourceMap": true,
+    "removeComments": true,
+    "incremental": true // replace with composite mode
+    // "composite": true, // TODO fix this
+  }
+}

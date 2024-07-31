@@ -7,12 +7,8 @@ import reactRefresh from "eslint-plugin-react-refresh";
 
 export default tsEslint.config(
   ...baseConfig,
+  { languageOptions: { parserOptions: { projectService: true } } },
   {
-    languageOptions: {
-      parserOptions: {
-        projectService: true,
-      },
-    },
     plugins: {
       // @ts-ignore
       "react-hooks": reactHooks,
@@ -25,15 +21,6 @@ export default tsEslint.config(
       "max-lines-per-function": "off", // ! FIX this
       "max-statements": "off", // ! FIX this
     },
-  },
-  {
-    ignores: [
-      "dist",
-      "tailwind.config.ts",
-      "vite.config.ts",
-      "postcss.config.js",
-      "eslint.config.js",
-      "src/routeTree.gen.ts",
-    ],
+    files: ["web/**/*.{ts,tsx}"],
   },
 );

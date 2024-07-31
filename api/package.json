@@ -8,15 +8,7 @@
     "build": "tsc -p tsconfig.build.json",
     "preview": "node dist/main.js",
     "ts": "tsc --noEmit --watch",
-    "ts:check": "tsc --noEmit",
-    "lint": "eslint --report-unused-disable-directives",
-    "format": "prettier --ignore-path ../.gitignore . --check",
-    "lint:fix": "eslint --report-unused-disable-directives --fix",
-    "format:fix": "prettier --ignore-path ../.gitignore . --write"
-  },
-  "lint-staged": {
-    "*.{ts,tsx,js,jsx,yaml,yml,cjs,mjs,html,css,json}": "prettier --write",
-    "*.{ts,tsx}": "eslint --fix"
+    "ts:check": "tsc --noEmit"
   },
   "dependencies": {
     "@clerk/clerk-sdk-node": "^5.0.20",
@@ -32,15 +24,9 @@
     "zod": "^3.23.8"
   },
   "devDependencies": {
-    "@tsconfig/strictest": "^2.0.5",
     "@types/express": "^4.17.21",
-    "@types/node": "^22.0.0",
-    "@vpetryniak/eslint-config-base": "^0.0.5",
+    "@types/node": "^22.0.2",
     "drizzle-kit": "^0.23.1",
-    "eslint": "9.8.0",
-    "prettier": "^3.3.3",
-    "tsx": "^4.16.2",
-    "typescript-eslint": "8.0.0-alpha.60"
-  },
-  "prettier": {}
+    "tsx": "^4.16.2"
+  }
 }

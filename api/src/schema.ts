@@ -1,7 +1,7 @@
 import * as pgCore from "drizzle-orm/pg-core";
 
 export const lots = pgCore.pgTable("lots", {
-  id: pgCore.serial("id").primaryKey().notNull(),
+  id: pgCore.integer("id").primaryKey().generatedAlwaysAsIdentity(),
   name: pgCore.varchar("name").notNull(),
   description: pgCore.varchar("description").notNull(),
   startPrice: pgCore.integer("startPrice").notNull(),
@@ -10,7 +10,7 @@ export const lots = pgCore.pgTable("lots", {
 });
 
 export const bids = pgCore.pgTable("bids", {
-  id: pgCore.serial("id").primaryKey().notNull(),
+  id: pgCore.integer("id").primaryKey().generatedAlwaysAsIdentity(),
   createdAt: pgCore.timestamp("createdAt").defaultNow().notNull(),
   ownerId: pgCore.varchar("ownerId").notNull(),
   price: pgCore.integer("price").notNull(),

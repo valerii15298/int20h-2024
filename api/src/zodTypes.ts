@@ -3,13 +3,9 @@ import { z } from "zod";
 
 import { bids, lots } from "./schema.js";
 
-const minStrLength = 1;
-export const zStr = z.string().min(minStrLength);
-export const zInt = z.coerce
-  .number()
-  .int()
-  .min(minStrLength)
-  .max(Number.MAX_SAFE_INTEGER);
+export const zStr = z.string().min(1);
+const MAX_INTEGER = 2 ** 31 - 1;
+export const zInt = z.coerce.number().int().min(1).max(MAX_INTEGER);
 
 // LOTS
 const lotOverride = {

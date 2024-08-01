@@ -4,7 +4,6 @@
     "outDir": "dist",
     "moduleResolution": "NodeNext",
     "module": "NodeNext",
-    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.tsbuildinfo",
-    "composite": true
+    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.tsbuildinfo"
   }
 }

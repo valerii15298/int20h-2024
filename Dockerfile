@@ -8,14 +8,13 @@ RUN corepack enable
 USER node
 WORKDIR /home/node/app
 RUN mkdir api web
-COPY --chown=node:node pnpm-lock.yaml pnpm-workspace.yaml ./
+COPY --chown=node:node tsconfig.base.json .env package.json pnpm-lock.yaml pnpm-workspace.yaml ./
 COPY --chown=node:node api/package.json api
 COPY --chown=node:node web/package.json web
 RUN pnpm i --frozen-lockfile
 
 COPY --chown=node:node api api
 COPY --chown=node:node web web
-COPY package.json .env ./
 ENV NODE_ENV=production
 RUN pnpm db:push
 RUN pnpm -r build

@@ -1,4 +1,4 @@
-import { SignedIn } from "@clerk/clerk-react";
+import { useUser } from "@clerk/clerk-react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { createLazyFileRoute } from "@tanstack/react-router";
 import { httpBatchLink, loggerLink } from "@trpc/client";
@@ -14,13 +14,17 @@ function Index() {
         links: [loggerLink(), httpBatchLink({ url: "/trpc" })],
       }),
     );
+  const user = useUser();
 
   return (
     <trpc.Provider client={trpcClient} queryClient={queryClient}>
       <QueryClientProvider client={queryClient}>
-        <SignedIn>
-          <Lots />
-        </SignedIn>
+        {user.isSignedIn && user.user.primaryEmailAddress
+          ? `Welcome, ${user.user.primaryEmailAddress.emailAddress}`
+          : ""}
+        <br />
+        <br />
+        <Lots />
       </QueryClientProvider>
     </trpc.Provider>
   );

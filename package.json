@@ -14,9 +14,9 @@
     "db:studio": "pnpm -C api exec drizzle-kit studio",
     "compose": "BUILDKIT_PROGRESS=plain docker compose up --build",
     "prepare": "husky",
-    "lint": "eslint --report-unused-disable-directives",
+    "lint": "eslint --report-unused-disable-directives --max-warnings 0",
     "format": "prettier . --check",
-    "lint:fix": "eslint --report-unused-disable-directives --fix",
+    "lint:fix": "eslint --report-unused-disable-directives --max-warnings 0 --fix",
     "format:fix": "prettier . --write"
   },
   "lint-staged": {

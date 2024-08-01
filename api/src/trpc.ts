@@ -40,8 +40,8 @@ export const appRouter = tr.router({
       ),
     update: tr.procedure
       .input(lotSchema)
-      .mutation(({ input, ctx: { db } }) =>
-        db.update(lots).set(input).where(d.eq(lots.id, input.id)),
+      .mutation(({ input: { id, ...input }, ctx: { db } }) =>
+        db.update(lots).set(input).where(d.eq(lots.id, id)),
       ),
     delete: tr.procedure
       .input(zInt)
